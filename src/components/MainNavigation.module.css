@@ -1,9 +1,13 @@
 .header {
-  max-width: 60rem;
+  /* max-width: 60rem; */
+  width: 100%;
   margin: auto;
   padding: 2rem;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  /* height: 3rem; */
+  z-index: 10;
 }
 
 .nav {

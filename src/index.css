@@ -5,7 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: gray;
+  font-size: 16px;
+  color: #818998;
+  text-transform: initial;
+  max-width: 1920px;
+  margin: 0 auto;
+  overflow-x: hidden;
 }
 
 code {

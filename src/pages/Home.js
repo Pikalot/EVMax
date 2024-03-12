@@ -1,13 +1,18 @@
 import styles from "./Home.module.css";
+import Welcome from "../components/Welcome";
+import Service from "../components/Service";
+import FeaturedCars from "../components/FeaturedCars";
+import Brands from "../components/Brands";
+import ContactMe from "../components/ContactMe";
 
 const Home = () => {
   return (
     <>
-      <h1>This is Home Page</h1>
-      <section id="home">ABOUT</section>
-      <section id="service">PROJECTS</section>
-      <section id="featured-cars">BLOG</section>
-      <section id="brands">CONTACT ME</section>
+      <Welcome />
+      <Service />
+      <FeaturedCars />
+      <Brands />
+      <ContactMe />
     </>
   );
 };

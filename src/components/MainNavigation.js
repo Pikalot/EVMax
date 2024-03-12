@@ -13,6 +13,7 @@ const MainNavigation = () => {
     await scroller.scrollTo(selector, {
       smooth: true,
       spy: true,
+      duration: 0,
     });
   };
 
@@ -28,6 +29,7 @@ const MainNavigation = () => {
                   className={styles.link}
                   smooth
                   spy
+                  duration={0}
                   to="home"
                 >
                   HOME
@@ -39,6 +41,7 @@ const MainNavigation = () => {
                   className={styles.link}
                   smooth
                   spy
+                  duration={0}
                   to="service"
                 >
                   SERVICE
@@ -50,6 +53,7 @@ const MainNavigation = () => {
                   className={styles.link}
                   smooth
                   spy
+                  duration={0}
                   to="featured-cars"
                 >
                   FEATURED CARS
@@ -61,6 +65,7 @@ const MainNavigation = () => {
                   className={styles.link}
                   smooth
                   spy
+                  duration={0}
                   to="brands"
                 >
                   BRANDS
@@ -77,14 +82,17 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/contactme"
-                  className={({ isActive }) =>
-                    isActive ? styles.active : undefined
-                  }
+                <Link
+                  activeClass={styles.active}
+                  className={styles.link}
+                  smooth
+                  spy
+                  offset={-530}
+                  duration={0}
+                  to="contact-me"
                 >
                   CONTACT ME
-                </NavLink>
+                </Link>
               </li>
             </>
           ) : (
@@ -118,14 +126,9 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/contactme"
-                  className={({ isActive }) =>
-                    isActive ? styles.active : undefined
-                  }
-                >
+                <button onClick={() => goToPageAndScroll("contact-me")}>
                   CONTACT ME
-                </NavLink>
+                </button>
               </li>
             </>
           )}
