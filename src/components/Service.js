@@ -1,4 +1,10 @@
+import {
+  faCar,
+  faShieldAlt,
+  faWrench,
+} from "@fortawesome/free-solid-svg-icons";
 import styles from "./Service.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Service = () => {
   return (
@@ -9,13 +15,10 @@ const Service = () => {
             <div className="col-md-4 col-sm-6">
               <div className={styles["single-service-item"]}>
                 <div className={styles["single-service-icon"]}>
-                  <i className="flaticon-car"></i>
-                  <i className="flaticon-car"></i>
+                  <FontAwesomeIcon icon={faCar} />
                 </div>
                 <h2>
-                  <a href="#">
-                    largest dealership <span> of</span> car
-                  </a>
+                  <a href="#">Largest Electric Car Dealership</a>
                 </h2>
                 <p>
                   Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
@@ -26,10 +29,10 @@ const Service = () => {
             <div className="col-md-4 col-sm-6">
               <div className={styles["single-service-item"]}>
                 <div className={styles["single-service-icon"]}>
-                  <i className="flaticon-car-repair"></i>
+                  <FontAwesomeIcon icon={faWrench}></FontAwesomeIcon>
                 </div>
                 <h2>
-                  <a href="#">unlimited repair warranty</a>
+                  <a href="#">Unlimited Repair Warranty</a>
                 </h2>
                 <p>
                   Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
@@ -40,10 +43,10 @@ const Service = () => {
             <div className="col-md-4 col-sm-6">
               <div className={styles["single-service-item"]}>
                 <div className={styles["single-service-icon"]}>
-                  <i className="flaticon-car-1"></i>
+                  <FontAwesomeIcon icon={faShieldAlt}></FontAwesomeIcon>
                 </div>
                 <h2>
-                  <a href="#">insurasnce support</a>
+                  <a href="#">Insurance Support</a>
                 </h2>
                 <p>
                   Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut

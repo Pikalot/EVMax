@@ -19,19 +19,22 @@
   display: inline-block;
   color: #50616c;
 }
+
 .single-service-item h2 a {
   font-size: 20px;
   margin: 35px 0 20px;
 }
+
 .single-service-item h2 a span {
   text-transform: lowercase;
 }
+
 .single-service-item p {
   padding-bottom: 35px;
   text-transform: initial;
   position: relative;
 }
-.single-service-item p:before {
+.single-service-item p::before {
   position: absolute;
   content: "";
   width: 20px;
@@ -42,16 +45,14 @@
   margin-left: -10px;
 }
 
-.single-service-icon [class^="flaticon-"]:before,
-.single-service-icon[class*=" flaticon-"]:before,
-.single-service-icon [class^="flaticon-"]:after,
-.single-service-icon [class*=" flaticon-"]:after {
+.single-service-icon {
   font-size: 60px;
 }
-.single-service-item:hover .single-service-icon [class^="flaticon-"]:before,
-.single-service-item:hover .single-service-icon [class*=" flaticon-"]:before,
-.single-service-item:hover .single-service-icon [class^="flaticon-"]:after,
-.single-service-item:hover .single-service-icon [class*=" flaticon-"]:after {
+
+.single-service-item:hover .single-service-icon::before,
+.single-service-item:hover .single-service-icon::before,
+.single-service-item:hover .single-service-icon::after,
+.single-service-item:hover .single-service-icon::after {
   color: #fff;
 }
 

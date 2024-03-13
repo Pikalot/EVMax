@@ -1,5 +1,5 @@
 import styles from "./FeaturedCars.module.css";
-
+import SectionHeader from "../utilities/SectionHeader";
 const CAR_DUMMY_DETAILS = [
   {
     name: "BMW 6-series gran coupe",
@@ -98,12 +98,10 @@ const FeaturedCars = () => {
   return (
     <section id="featured-cars" className={styles["featured-cars"]}>
       <div className="container">
-        <div className={styles["section-header"]}>
-          <p>
-            checkout <span>the</span> featured cars
-          </p>
-          <h2>featured cars</h2>
-        </div>
+        <SectionHeader
+          description="Checkout the Featured Cars"
+          title="Featured Cars"
+        />
 
         <div className={styles["featured-cars-content"]}>
           <div className="row">
