@@ -1,3 +1,5 @@
+import styles from "./Shop.module.css";
+
 const Shop = () => {
   return (
     <>

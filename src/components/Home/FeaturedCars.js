@@ -1,5 +1,6 @@
 import styles from "./FeaturedCars.module.css";
-import SectionHeader from "../utilities/SectionHeader";
+import SectionHeader from "../../utilities/SectionHeader";
+
 const CAR_DUMMY_DETAILS = [
   {
     name: "BMW 6-series gran coupe",

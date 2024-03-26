@@ -1,6 +1,6 @@
 import styles from "./Testimonial.module.css";
 import OwlCarousel from "react-owl-carousel";
-import SectionHeader from "../utilities/SectionHeader";
+import SectionHeader from "../../utilities/SectionHeader";
 
 const TestiItems = (props) => {
   return (
