@@ -1,5 +1,6 @@
 import styles from "./FeaturedCars.module.css";
 import SectionHeader from "../../utilities/SectionHeader";
+import CarListing from "../../utilities/CarListing";
 
 const CAR_DUMMY_DETAILS = [
   {
@@ -64,36 +65,36 @@ const CAR_DUMMY_DETAILS = [
   },
 ];
 
-const CarsFeatureDisplay = (props) => {
-  return (
-    <div className="col-lg-3 col-md-4 col-sm-6">
-      <div className={styles["single-featured-cars"]}>
-        <div className={styles["featured-img-box"]}>
-          <div className={styles["featured-cars-img"]}>
-            <img src={props.images} alt="cars" />
-          </div>
-          <div className={styles["featured-model-info"]}>
-            <p>
-              model: {props.model}
-              <span className={styles["featured-mi-span"]}>
-                {props.miles} mi
-              </span>
-              <span className={styles["featured-hp-span"]}>{props.hp}HP</span>
-              automatic
-            </p>
-          </div>
-        </div>
-        <div className={styles["featured-cars-txt"]}>
-          <h2>
-            <a href="#">{props.name}</a>
-          </h2>
-          <h3>${props.price}</h3>
-          <p>{props.description}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
+// const CarsFeatureDisplay = (props) => {
+//   return (
+//     <div className="col-lg-3 col-md-4 col-sm-6">
+//       <div className={styles["single-featured-cars"]}>
+//         <div className={styles["featured-img-box"]}>
+//           <div className={styles["featured-cars-img"]}>
+//             <img src={props.images} alt="cars" />
+//           </div>
+//           <div className={styles["featured-model-info"]}>
+//             <p>
+//               model: {props.model}
+//               <span className={styles["featured-mi-span"]}>
+//                 {props.miles} mi
+//               </span>
+//               <span className={styles["featured-hp-span"]}>{props.hp}HP</span>
+//               automatic
+//             </p>
+//           </div>
+//         </div>
+//         <div className={styles["featured-cars-txt"]}>
+//           <h2>
+//             <a href="#">{props.name}</a>
+//           </h2>
+//           <h3>${props.price}</h3>
+//           <p>{props.description}</p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 const FeaturedCars = () => {
   return (
@@ -107,7 +108,7 @@ const FeaturedCars = () => {
         <div className={styles["featured-cars-content"]}>
           <div className="row">
             {CAR_DUMMY_DETAILS.map((car, index) => (
-              <CarsFeatureDisplay
+              <CarListing
                 key={index}
                 name={car.name}
                 price={car.price}

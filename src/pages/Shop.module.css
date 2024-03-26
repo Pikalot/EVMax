@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  margin-bottom: 3rem;
+  padding-top: 6rem;
+}
+
+.car-filter-container {
+  width: 20%;
+}
+
+.car-display-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.single-car-display {
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.filter-form {
+  padding: 5%;
+}
+
+.filter-options {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
