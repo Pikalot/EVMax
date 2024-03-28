@@ -1,0 +1,25 @@
+{
+  "name": "evmax",
+  "version": "1.0.0",
+  "description": "Electric Car Dealership",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix client",
+    "database": "npm run start --prefix strapi-api",
+    "dev": "concurrently \"npm run client\" \"npm run database\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathan-dinh-dev/EVMax.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathan-dinh-dev/EVMax/issues"
+  },
+  "homepage": "https://github.com/nathan-dinh-dev/EVMax#readme",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
