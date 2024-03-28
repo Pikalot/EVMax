@@ -1,6 +1,10 @@
 import styles from "./Testimonial.module.css";
 import OwlCarousel from "react-owl-carousel";
 import SectionHeader from "../../utilities/SectionHeader";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import fadeInVariant from "../../utilities/fadeInVariant";
+import { useEffect } from "react";
 
 const TestiItems = (props) => {
   return (
@@ -73,6 +77,9 @@ const DUMMY_CLIENTS = [
 ];
 
 const Testimonial = () => {
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
   const options = {
     dots: true,
     loop: true,
@@ -97,6 +104,14 @@ const Testimonial = () => {
     },
   };
 
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
   return (
     <section id="clients-say" className={styles["clients-say"]}>
       <div className="container">
@@ -105,7 +120,13 @@ const Testimonial = () => {
           description="Checkout Our Reviews"
         />
 
-        <div className="row">
+        <motion.div
+          className="row"
+          variants={fadeInVariant}
+          initial="hidden"
+          animate={control}
+          ref={ref}
+        >
           <OwlCarousel
             className={`${styles["testimonial-carousel"]} owl-theme`}
             {...options}
@@ -119,7 +140,7 @@ const Testimonial = () => {
               />
             ))}
           </OwlCarousel>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

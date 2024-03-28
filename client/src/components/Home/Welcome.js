@@ -1,6 +1,21 @@
 import styles from "./Welcome.module.css";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import fadeInVariant from "../../utilities/fadeInVariant";
+import { useEffect } from "react";
 
 const Welcome = () => {
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
   return (
     <>
       <section id="home" className={styles["welcome-hero"]}>
@@ -20,7 +35,13 @@ const Welcome = () => {
           </div>
         </div>
 
-        <div className="container">
+        <motion.div
+          className="container"
+          variants={fadeInVariant}
+          initial="hidden"
+          animate={control}
+          ref={ref}
+        >
           <div className={styles["model-search-content"]}>
             <div className={`row ${styles["row"]}`}>
               <div className={`col-md-offset-1 col-md-2 col-sm-12`}>
@@ -126,7 +147,7 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </>
   );

@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
     "database": "npm run start --prefix strapi-api",
-    "dev": "concurrently \"npm run client\" \"npm run database\""
+    "dev-database": "npm run develop --prefix strapi-api",
+    "dev": "concurrently \"npm run client\" \"npm run dev-database\"",
+    "start": "concurrently \"npm run client\" \"npm run database\""
   },
   "repository": {
     "type": "git",
