@@ -362,6 +362,46 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiCarCollectionCarCollection extends Schema.CollectionType {
+  collectionName: 'car_collections';
+  info: {
+    singularName: 'car-collection';
+    pluralName: 'car-collections';
+    displayName: 'car_collection';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    make: Attribute.String;
+    model: Attribute.String;
+    year: Attribute.Integer;
+    price: Attribute.Integer;
+    hp: Attribute.Integer;
+    miles: Attribute.Decimal;
+    body: Attribute.String;
+    isFeatured: Attribute.Boolean;
+    color: Attribute.String;
+    descriptions: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::car-collection.car-collection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::car-collection.car-collection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -798,6 +838,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::car-collection.car-collection': ApiCarCollectionCarCollection;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

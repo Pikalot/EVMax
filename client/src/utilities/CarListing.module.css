@@ -19,14 +19,14 @@
   font-size: 12px;
   color: #8c92a0;
   text-transform: capitalize;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
 }
 
-.featured-mi-span {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-.featured-hp-span {
+.featured-model-info p span {
   display: inline-block;
   margin-right: 10px;
 }

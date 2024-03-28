@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "car_collections",
+  "info": {
+    "singularName": "car-collection",
+    "pluralName": "car-collections",
+    "displayName": "car_collection",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "make": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "hp": {
+      "type": "integer"
+    },
+    "miles": {
+      "type": "decimal"
+    },
+    "body": {
+      "type": "string"
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "color": {
+      "type": "string"
+    },
+    "descriptions": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.car-filter-container {
+  width: 20%;
+}
+
+.filter-form {
+  padding: 5%;
+}
+
+.filter-options {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.filter-options label {
+  width: 2.5rem;
+  margin: 0 0.5rem;
+}
+
+.filter-options select {
+  width: 5rem;
+}

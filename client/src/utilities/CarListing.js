@@ -10,21 +10,21 @@ const CarListing = (props) => {
           </div>
           <div className={styles["featured-model-info"]}>
             <p>
-              model: {props.model}
-              <span className={styles["featured-mi-span"]}>
-                {props.miles} mi
-              </span>
-              <span className={styles["featured-hp-span"]}>{props.hp}HP</span>
-              automatic
+              <span>Color: {props.details.color}</span>
+              <span>{props.details.miles} miles</span>
+              <span>{props.details.hp}HP</span>
+              <span>Body: {props.details.body}</span>
             </p>
           </div>
         </div>
         <div className={styles["featured-cars-txt"]}>
           <h2>
-            <a href="#">{props.name}</a>
+            <a href="#">
+              {props.details.make} {props.details.model} {props.details.year}
+            </a>
           </h2>
-          <h3>${props.price}</h3>
-          <p>{props.description}</p>
+          <h3>${props.details.price}</h3>
+          <p>{props.details.descriptions}</p>
         </div>
       </div>
     </div>
