@@ -1,5 +1,6 @@
 .car-filter-container {
   width: 20%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .filter-form {
@@ -9,6 +10,10 @@
 .filter-options {
   padding: 0.5rem;
   border-bottom: 1px solid #ccc;
+}
+
+.filter-options:nth-of-type(3) label {
+  width: 5rem;
 }
 
 .filter-options label {

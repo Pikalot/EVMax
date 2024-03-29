@@ -23,26 +23,30 @@ const FeaturedCars = () => {
 
   return (
     <section id="featured-cars" className={styles["featured-cars"]}>
-      <div className="container">
+      <motion.div
+        className="container"
+        variants={fadeInVariant}
+        initial="hidden"
+        animate={control}
+        ref={ref}
+      >
         <SectionHeader
           description="Checkout the Featured Cars"
           title="Featured Cars"
         />
 
         <div className={styles["featured-cars-content"]}>
-          <motion.div
-            className="row"
-            variants={fadeInVariant}
-            initial="hidden"
-            animate={control}
-            ref={ref}
-          >
+          <div className={styles.row}>
             {featuredCars.map((car, index) => (
-              <CarListing key={index} details={car.attributes} />
+              <CarListing
+                key={index}
+                details={car}
+                className={styles["car-listing"]}
+              />
             ))}
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

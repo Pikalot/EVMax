@@ -6,6 +6,18 @@
   padding-top: 96px;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.car-listing {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .featured-img-box {
   border: 1px solid #dadfe9;
 }

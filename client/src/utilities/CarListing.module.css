@@ -33,6 +33,7 @@
 
 .featured-cars-txt {
   margin: 21px 0 47px;
+  text-align: center;
 }
 
 .featured-cars-txt h2 a {
@@ -51,4 +52,22 @@
 .featured-cars-txt h3,
 .featured-cars-txt p {
   font-size: 13px;
+}
+
+.box-shadow {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.fa-heart {
+  background-color: transparent;
+}
+
+.single-featured-cars {
+  position: relative;
 }

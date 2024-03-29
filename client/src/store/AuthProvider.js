@@ -4,6 +4,7 @@ import axios from "axios";
 
 const AuthProvider = (props) => {
   const [cars, setCars] = useState([]);
+  const [favoriteCars, setFavoriteCars] = useState([]);
 
   const getData = async () => {
     try {
@@ -17,14 +18,23 @@ const AuthProvider = (props) => {
     }
   };
 
+  const carSaveHandler = (id) => {
+    setFavoriteCars((prev) => {
+      if (prev.includes(id)) return prev.filter((carID) => carID !== id);
+      return [...prev, id];
+    });
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
   const authContext = {
     getData: getData,
+    carSave: carSaveHandler,
     featuredCars: cars.filter((car) => car.attributes.isFeatured),
     allCars: cars,
+    favoriteCars: favoriteCars,
   };
 
   return (

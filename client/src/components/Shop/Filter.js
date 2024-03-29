@@ -24,10 +24,15 @@ const Filter = () => {
           <select name="" id="" value="">
             <option value="">Lucid</option>
             <option value="">Tesla</option>
-            {/* <option value="">Tesla</option>
-            <option value="">Tesla</option>
-            <option value="">Tesla</option> */}
+            <option value="">Nissan</option>
+            <option value="">BMW</option>
+            <option value="">Volkswagen</option>
           </select>
+        </div>
+
+        <div className={styles["filter-options"]}>
+          <label htmlFor="">Saved Cars</label>
+          <input type="checkbox" name="" id="" />
         </div>
       </form>
     </div>
