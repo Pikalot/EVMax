@@ -8,8 +8,10 @@
   align-items: center;
   justify-content: center;
   padding: 0 0.5rem;
-  height: 220px;
+  height: 250px;
   border-bottom: 1px solid #dadfe9;
+  overflow: hidden;
+  width: 100%;
 }
 
 .featured-cars-img img {
@@ -76,4 +78,5 @@
 
 .single-featured-cars {
   position: relative;
+  width: 100%;
 }
