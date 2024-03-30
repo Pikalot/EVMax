@@ -8,7 +8,7 @@ const CarListing = (props) => {
   const ctx = useContext(AuthContext);
   const apiUrl = "http://localhost:1337";
   const favoriteHandler = () => {
-    ctx.carSave(props.details.id);
+    ctx.saveCar(props.details.id);
   };
 
   return (
@@ -53,7 +53,7 @@ const CarListing = (props) => {
             <FontAwesomeIcon
               icon={faHeart}
               style={
-                ctx.favoriteCars.includes(props.details.id)
+                ctx.favoriteCarsID.includes(props.details.id)
                   ? { color: "red" }
                   : { color: "gray" }
               }

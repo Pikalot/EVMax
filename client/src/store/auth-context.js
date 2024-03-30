@@ -2,10 +2,12 @@ import React from "react";
 
 const AuthContext = React.createContext({
   getData: () => {},
-  carSave: () => {},
+  saveCar: () => {},
+  setFilterOptions: () => {},
   featuredCars: [],
   allCars: [],
-  favoriteCars: [],
+  favoriteCarsID: [],
+  filterOptions: {},
 });
 
 export default AuthContext;

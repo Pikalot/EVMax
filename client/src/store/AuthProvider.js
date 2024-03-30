@@ -4,7 +4,13 @@ import axios from "axios";
 
 const AuthProvider = (props) => {
   const [cars, setCars] = useState([]);
-  const [favoriteCars, setFavoriteCars] = useState([]);
+  const [favoriteCarsID, setFavoriteCarsID] = useState([]);
+  const [filter, setFilter] = useState({
+    sortOptions: "",
+    body: "all",
+    make: "all",
+    isSavedCars: false,
+  });
 
   const getData = async () => {
     try {
@@ -19,9 +25,15 @@ const AuthProvider = (props) => {
   };
 
   const carSaveHandler = (id) => {
-    setFavoriteCars((prev) => {
+    setFavoriteCarsID((prev) => {
       if (prev.includes(id)) return prev.filter((carID) => carID !== id);
       return [...prev, id];
+    });
+  };
+
+  const setFilterOptions = (options) => {
+    setFilter((prev) => {
+      return { ...prev, ...options };
     });
   };
 
@@ -31,10 +43,12 @@ const AuthProvider = (props) => {
 
   const authContext = {
     getData: getData,
-    carSave: carSaveHandler,
+    saveCar: carSaveHandler,
+    setFilterOptions: setFilterOptions,
     featuredCars: cars.filter((car) => car.attributes.isFeatured),
     allCars: cars,
-    favoriteCars: favoriteCars,
+    favoriteCarsID: favoriteCarsID,
+    filterOptions: filter,
   };
 
   return (

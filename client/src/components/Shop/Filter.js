@@ -1,8 +1,28 @@
 import { faSort } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Filter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import AuthContext from "../../store/auth-context";
 
 const Filter = () => {
+  const ctx = useContext(AuthContext);
+
+  const sortHandler = (event) => {
+    ctx.setFilterOptions({ sortOptions: event.target.value });
+  };
+
+  const bodyHandler = (event) => {
+    ctx.setFilterOptions({ body: event.target.value });
+  };
+
+  const makeHandler = (event) => {
+    ctx.setFilterOptions({ make: event.target.value });
+  };
+
+  const saveCarHandler = (event) => {
+    ctx.setFilterOptions({ isSavedCars: event.target.checked });
+  };
+
   return (
     <div className={styles["car-filter-container"]}>
       <form className={styles["filter-form"]}>
@@ -11,28 +31,50 @@ const Filter = () => {
         </h5>
 
         <div className={styles["filter-options"]}>
-          <label htmlFor="">Body</label>
-          <select name="" id="" value="">
-            <option value="">Sedan</option>
-            <option value="">SUV</option>
-            <option value="">COUPE</option>
+          <label htmlFor="sort-select">Sort by</label>
+          <select name="sort" id="sort-select" onChange={sortHandler}>
+            <option selected value="">
+              --
+            </option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
           </select>
         </div>
 
         <div className={styles["filter-options"]}>
-          <label htmlFor="">Make</label>
-          <select name="" id="" value="">
-            <option value="">Lucid</option>
-            <option value="">Tesla</option>
-            <option value="">Nissan</option>
-            <option value="">BMW</option>
-            <option value="">Volkswagen</option>
+          <label htmlFor="body-select">Body</label>
+          <select name="body" id="body-select" onChange={bodyHandler}>
+            <option selected value="all">
+              All
+            </option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+            <option value="coupe">COUPE</option>
           </select>
         </div>
 
         <div className={styles["filter-options"]}>
-          <label htmlFor="">Saved Cars</label>
-          <input type="checkbox" name="" id="" />
+          <label htmlFor="make-select">Make</label>
+          <select name="make" id="make-select" onChange={makeHandler}>
+            <option selected value="all">
+              All
+            </option>
+            <option value="lucid">Lucid</option>
+            <option value="tesla">Tesla</option>
+            <option value="nissan">Nissan</option>
+            <option value="bmw">BMW</option>
+            <option value="volkswagen">Volkswagen</option>
+          </select>
+        </div>
+
+        <div className={styles["filter-options"]}>
+          <label htmlFor="save">Saved Cars</label>
+          <input
+            type="checkbox"
+            name="isSaved"
+            id="save"
+            onChange={saveCarHandler}
+          />
         </div>
       </form>
     </div>
