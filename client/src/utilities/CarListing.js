@@ -6,7 +6,7 @@ import AuthContext from "../store/auth-context";
 
 const CarListing = (props) => {
   const ctx = useContext(AuthContext);
-
+  const apiUrl = "http://localhost:1337";
   const favoriteHandler = () => {
     ctx.carSave(props.details.id);
   };
@@ -18,7 +18,15 @@ const CarListing = (props) => {
       <div className={styles["single-featured-cars"]}>
         <div className={styles["featured-img-box"]}>
           <div className={styles["featured-cars-img"]}>
-            <img src={props.images} alt="cars" />
+            <img
+              src={
+                props.details.attributes.images.data !== null
+                  ? apiUrl +
+                    props.details.attributes.images.data[0].attributes.url
+                  : undefined
+              }
+              alt="cars"
+            />
           </div>
           <div className={styles["featured-model-info"]}>
             <p>

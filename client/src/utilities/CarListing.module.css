@@ -1,14 +1,20 @@
 .featured-img-box {
   border: 1px solid #dadfe9;
+  overflow: hidden;
 }
 
 .featured-cars-img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 30px;
+  padding: 0 0.5rem;
   height: 220px;
   border-bottom: 1px solid #dadfe9;
+}
+
+.featured-cars-img img {
+  max-width: 100%;
+  height: auto;
 }
 
 .featured-model-info {

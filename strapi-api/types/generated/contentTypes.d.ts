@@ -384,6 +384,7 @@ export interface ApiCarCollectionCarCollection extends Schema.CollectionType {
     isFeatured: Attribute.Boolean;
     color: Attribute.String;
     descriptions: Attribute.Text;
+    images: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
