@@ -1,10 +1,11 @@
 import { faSort } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Filter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../store/auth-context";
 
 const Filter = () => {
+  const [disabled, setDisabled] = useState(false);
   const ctx = useContext(AuthContext);
 
   const sortHandler = (event) => {
@@ -20,6 +21,7 @@ const Filter = () => {
   };
 
   const saveCarHandler = (event) => {
+    setDisabled(event.target.checked);
     ctx.setFilterOptions({ isSavedCars: event.target.checked });
   };
 
@@ -32,7 +34,12 @@ const Filter = () => {
 
         <div className={styles["filter-options"]}>
           <label htmlFor="sort-select">Sort by</label>
-          <select name="sort" id="sort-select" onChange={sortHandler}>
+          <select
+            name="sort"
+            id="sort-select"
+            onChange={sortHandler}
+            disabled={disabled}
+          >
             <option selected value="">
               --
             </option>
@@ -43,7 +50,12 @@ const Filter = () => {
 
         <div className={styles["filter-options"]}>
           <label htmlFor="body-select">Body</label>
-          <select name="body" id="body-select" onChange={bodyHandler}>
+          <select
+            name="body"
+            id="body-select"
+            onChange={bodyHandler}
+            disabled={disabled}
+          >
             <option selected value="all">
               All
             </option>
@@ -55,7 +67,12 @@ const Filter = () => {
 
         <div className={styles["filter-options"]}>
           <label htmlFor="make-select">Make</label>
-          <select name="make" id="make-select" onChange={makeHandler}>
+          <select
+            name="make"
+            id="make-select"
+            onChange={makeHandler}
+            disabled={disabled}
+          >
             <option selected value="all">
               All
             </option>
