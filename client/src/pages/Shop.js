@@ -13,18 +13,8 @@ const Shop = () => {
 
   let carDisplay = [...cars];
 
-  const json = {
-    sortOptions: "",
-    body: "all",
-    make: "all",
-    isSavedCars: false,
-  };
-
   const sortBy = (array) => {
     switch (options.sortOptions) {
-      case "":
-        array = [...cars];
-        break;
       case "price-low":
         array.sort((a, b) => a.attributes.price - b.attributes.price);
         break;
@@ -32,7 +22,7 @@ const Shop = () => {
         array.sort((a, b) => b.attributes.price - a.attributes.price);
         break;
       default:
-        console.log("default state filter");
+        array = [...cars];
     }
   };
 
@@ -40,14 +30,23 @@ const Shop = () => {
     carDisplay = cars.filter((car) => savedCarsID.includes(car.id));
   } else {
     sortBy(carDisplay);
+    if (options.body !== "all") {
+      carDisplay = carDisplay.filter(
+        (car) =>
+          car.attributes.body.toLowerCase() === options.body.toLowerCase()
+      );
+    }
+    if (options.make !== "all") {
+      carDisplay = carDisplay.filter(
+        (car) =>
+          car.attributes.make.toLowerCase() === options.make.toLowerCase()
+      );
+    }
   }
 
   return (
     <>
-      <div
-        className={styles.container}
-        style={options.isSavedCars ? { height: "100vh" } : {}}
-      >
+      <div className={styles.container}>
         <Filter />
         <div className={styles["car-display-container"]}>
           {carDisplay.map((car, index) => (
