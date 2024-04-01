@@ -2,8 +2,11 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
 import { Link } from "react-scroll";
 import * as Scroll from "react-scroll";
+import { useContext } from "react";
+import AuthContext from "../store/auth-context";
 
 const MainNavigation = () => {
+  const ctx = useContext(AuthContext);
   const location = useLocation().pathname;
   const navigate = useNavigate();
   const scroller = Scroll.scroller;
@@ -77,6 +80,14 @@ const MainNavigation = () => {
                   className={({ isActive }) =>
                     isActive ? styles.active : undefined
                   }
+                  onClick={() => {
+                    ctx.setFilterOptions({
+                      sortOptions: "",
+                      body: "all",
+                      make: "all",
+                      isSavedCars: false,
+                    });
+                  }}
                 >
                   SHOP
                 </NavLink>
@@ -121,6 +132,14 @@ const MainNavigation = () => {
                   className={({ isActive }) =>
                     isActive ? styles.active : undefined
                   }
+                  onClick={() => {
+                    ctx.setFilterOptions({
+                      sortOptions: "",
+                      body: "all",
+                      make: "all",
+                      isSavedCars: false,
+                    });
+                  }}
                 >
                   SHOP
                 </NavLink>

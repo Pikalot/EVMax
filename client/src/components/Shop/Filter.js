@@ -1,11 +1,12 @@
 import { faSort } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Filter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import AuthContext from "../../store/auth-context";
 
 const Filter = () => {
   const [disabled, setDisabled] = useState(false);
+
   const ctx = useContext(AuthContext);
 
   const sortHandler = (event) => {
@@ -39,6 +40,7 @@ const Filter = () => {
             id="sort-select"
             onChange={sortHandler}
             disabled={disabled}
+            value={ctx.filterOptions.sortOptions}
           >
             <option selected value="">
               --
@@ -55,6 +57,7 @@ const Filter = () => {
             id="body-select"
             onChange={bodyHandler}
             disabled={disabled}
+            value={ctx.filterOptions.body}
           >
             <option selected value="all">
               All
@@ -72,6 +75,7 @@ const Filter = () => {
             id="make-select"
             onChange={makeHandler}
             disabled={disabled}
+            value={ctx.filterOptions.make}
           >
             <option selected value="all">
               All
@@ -91,6 +95,7 @@ const Filter = () => {
             name="isSaved"
             id="save"
             onChange={saveCarHandler}
+            checked={ctx.filterOptions.isSavedCars}
           />
         </div>
       </form>
