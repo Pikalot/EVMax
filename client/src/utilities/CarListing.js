@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../store/auth-context";
+import Carousel from "react-bootstrap/Carousel";
 
 const CarListing = (props) => {
   const ctx = useContext(AuthContext);
@@ -18,16 +19,17 @@ const CarListing = (props) => {
       <div className={styles["single-featured-cars"]}>
         <div className={styles["featured-img-box"]}>
           <div className={styles["featured-cars-img"]}>
-            <img
-              src={
-                props.details.attributes.images.data !== null
-                  ? apiUrl +
-                    props.details.attributes.images.data[0].attributes.url
-                  : undefined
-              }
-              alt="cars"
-            />
+            <Carousel interval={null} indicators={false}>
+              {props.details.attributes.images.data !== null
+                ? props.details.attributes.images.data.map((carImg) => (
+                    <Carousel.Item>
+                      <img src={apiUrl + carImg.attributes.url} alt="cars" />
+                    </Carousel.Item>
+                  ))
+                : undefined}
+            </Carousel>
           </div>
+
           <div className={styles["featured-model-info"]}>
             <p>
               <span>Color: {props.details.attributes.color}</span>
@@ -37,6 +39,7 @@ const CarListing = (props) => {
             </p>
           </div>
         </div>
+
         <div className={styles["featured-cars-txt"]}>
           <h2>
             <a href="#">
