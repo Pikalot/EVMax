@@ -1,15 +1,22 @@
 import MainNavigation from "../utilities/MainNavigation";
 import { Outlet } from "react-router-dom";
-import AuthProvider from "../store/AuthProvider";
+import LoginModal from "../utilities/LoginModal";
+import { useContext } from "react";
+import AuthContext from "../store/auth-context";
 
 const RootLayout = () => {
+  const ctx = useContext(AuthContext);
   return (
-    <AuthProvider>
+    <>
       <MainNavigation />
-      <main>
-        <Outlet />
-      </main>
-    </AuthProvider>
+      {ctx.isOpenedLoginModal ? (
+        <LoginModal />
+      ) : (
+        <main>
+          <Outlet />
+        </main>
+      )}
+    </>
   );
 };
 

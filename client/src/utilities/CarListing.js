@@ -21,8 +21,8 @@ const CarListing = (props) => {
           <div className={styles["featured-cars-img"]}>
             <Carousel interval={null} indicators={false}>
               {props.details.attributes.images.data !== null
-                ? props.details.attributes.images.data.map((carImg) => (
-                    <Carousel.Item>
+                ? props.details.attributes.images.data.map((carImg, index) => (
+                    <Carousel.Item key={index}>
                       <img src={apiUrl + carImg.attributes.url} alt="cars" />
                     </Carousel.Item>
                   ))

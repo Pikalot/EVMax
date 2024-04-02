@@ -6,6 +6,7 @@ const AuthProvider = (props) => {
   const [cars, setCars] = useState([]);
   const [favoriteCarsID, setFavoriteCarsID] = useState([]);
   const [isloggedIn, setIsLoggedIn] = useState(false);
+  const [isOpenedModal, setIsOpenedModal] = useState(false);
 
   const [filter, setFilter] = useState({
     sortOptions: "",
@@ -39,6 +40,10 @@ const AuthProvider = (props) => {
     });
   };
 
+  const toggleModalStatus = () => {
+    setIsOpenedModal((prev) => !prev);
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -47,11 +52,13 @@ const AuthProvider = (props) => {
     getData: getData,
     saveCar: carSaveHandler,
     setFilterOptions: setFilterOptions,
+    toggleLoginModalActions: toggleModalStatus,
     featuredCars: cars.filter((car) => car.attributes.isFeatured),
     allCars: cars,
     favoriteCarsID: favoriteCarsID,
     filterOptions: filter,
     isLoggedIn: isloggedIn,
+    isOpenedLoginModal: isOpenedModal,
   };
 
   return (

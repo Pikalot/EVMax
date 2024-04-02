@@ -134,7 +134,10 @@ const MainNavigation = () => {
                   CONTACT ME
                 </Link>
               </li>
-              <button className={styles["button-inside"]}>
+              <button
+                className={styles["button-inside"]}
+                onClick={ctx.toggleLoginModalActions}
+              >
                 <FontAwesomeIcon icon={faUser} />
               </button>
             </>
@@ -213,15 +216,20 @@ const MainNavigation = () => {
                 >
                   CONTACT ME
                 </button>
-
-                <button className={styles["button-inside"]}>
-                  <FontAwesomeIcon icon={faUser} />
-                </button>
               </li>
+              <button
+                className={styles["button-inside"]}
+                onClick={ctx.toggleLoginModalActions}
+              >
+                <FontAwesomeIcon icon={faUser} />
+              </button>
             </>
           )}
         </ul>
-        <button className={styles["button-outside"]}>
+        <button
+          className={styles["button-outside"]}
+          onClick={ctx.toggleLoginModalActions}
+        >
           <FontAwesomeIcon icon={faUser} />
         </button>
       </nav>
