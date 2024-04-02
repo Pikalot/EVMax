@@ -46,7 +46,7 @@ const Shop = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} id="shop">
         <Filter />
         <div className={styles["car-display-container"]}>
           {carDisplay.map((car, index) => (

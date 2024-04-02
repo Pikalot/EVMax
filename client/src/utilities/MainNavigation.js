@@ -2,7 +2,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
 import { Link } from "react-scroll";
 import * as Scroll from "react-scroll";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../store/auth-context";
 
 const MainNavigation = () => {
@@ -10,24 +10,43 @@ const MainNavigation = () => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   const scroller = Scroll.scroller;
+  const [isActive, setIsActive] = useState(false);
 
-  const goToPageAndScroll = async (selector) => {
-    await navigate("/");
-    await scroller.scrollTo(selector, {
-      smooth: true,
-      spy: true,
-      duration: 0,
-    });
+  const toggleActiveClass = () => {
+    setIsActive((prev) => !prev);
+  };
+
+  const removeActive = () => {
+    setIsActive(false);
+  };
+
+  const goToPageAndScroll = async (selector, pageTitle) => {
+    if (pageTitle === "home") {
+      await navigate("/");
+      await scroller.scrollTo(selector, {
+        smooth: true,
+        spy: true,
+        duration: 0,
+      });
+    } else if (pageTitle === "shop") {
+      await navigate("/cars");
+      await scroller.scrollTo(selector, {
+        smooth: true,
+        spy: true,
+        duration: 0,
+      });
+    }
   };
 
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <ul className={styles.list}>
+        <ul className={`${styles.list} ${isActive ? styles.active : ""}`}>
           {location === "/" ? (
             <>
               <li>
                 <Link
+                  onClick={removeActive}
                   activeClass={styles.active}
                   className={styles.link}
                   smooth
@@ -40,6 +59,7 @@ const MainNavigation = () => {
               </li>
               <li>
                 <Link
+                  onClick={removeActive}
                   activeClass={styles.active}
                   className={styles.link}
                   smooth
@@ -52,6 +72,7 @@ const MainNavigation = () => {
               </li>
               <li>
                 <Link
+                  onClick={removeActive}
                   activeClass={styles.active}
                   className={styles.link}
                   smooth
@@ -64,6 +85,7 @@ const MainNavigation = () => {
               </li>
               <li>
                 <Link
+                  onClick={removeActive}
                   activeClass={styles.active}
                   className={styles.link}
                   smooth
@@ -81,6 +103,8 @@ const MainNavigation = () => {
                     isActive ? styles.active : undefined
                   }
                   onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("shop", "shop");
                     ctx.setFilterOptions({
                       sortOptions: "",
                       body: "all",
@@ -94,6 +118,7 @@ const MainNavigation = () => {
               </li>
               <li>
                 <Link
+                  onClick={removeActive}
                   activeClass={styles.active}
                   className={styles.link}
                   smooth
@@ -109,20 +134,42 @@ const MainNavigation = () => {
           ) : (
             <>
               <li>
-                <button onClick={() => goToPageAndScroll("home")}>HOME</button>
+                <button
+                  onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("home", "home");
+                  }}
+                >
+                  HOME
+                </button>
               </li>
               <li>
-                <button onClick={() => goToPageAndScroll("service")}>
+                <button
+                  onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("service", "home");
+                  }}
+                >
                   SERVICE
                 </button>
               </li>
               <li>
-                <button onClick={() => goToPageAndScroll("featured-cars")}>
+                <button
+                  onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("featured-cars", "home");
+                  }}
+                >
                   FEATURED CARS
                 </button>
               </li>
               <li>
-                <button onClick={() => goToPageAndScroll("brands")}>
+                <button
+                  onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("brands", "home");
+                  }}
+                >
                   BRANDS
                 </button>
               </li>
@@ -133,6 +180,12 @@ const MainNavigation = () => {
                     isActive ? styles.active : undefined
                   }
                   onClick={() => {
+                    scroller.scrollTo("shop", {
+                      smooth: true,
+                      spy: true,
+                      duration: 0,
+                    });
+                    setIsActive(false);
                     ctx.setFilterOptions({
                       sortOptions: "",
                       body: "all",
@@ -145,7 +198,12 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <button onClick={() => goToPageAndScroll("contact-me")}>
+                <button
+                  onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("contact-me", "home");
+                  }}
+                >
                   CONTACT ME
                 </button>
               </li>
@@ -153,6 +211,15 @@ const MainNavigation = () => {
           )}
         </ul>
       </nav>
+
+      <div
+        className={`${styles.hamburger} ${isActive ? styles.active : ""}`}
+        onClick={toggleActiveClass}
+      >
+        <span className={`${styles.bar}`}></span>
+        <span className={`${styles.bar}`}></span>
+        <span className={`${styles.bar}`}></span>
+      </div>
     </header>
   );
 };
