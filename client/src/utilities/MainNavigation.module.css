@@ -11,8 +11,24 @@
   z-index: 10;
 }
 
+.header h2 {
+  font-family: "Tangerine", serif;
+  font-weight: 1000;
+  margin: 0;
+  padding: 0;
+}
+
 .nav {
   width: 100%;
+  text-align: right;
+}
+
+.nav .button-inside::after {
+  content: " LOG IN";
+}
+
+.button-outside {
+  display: none;
 }
 
 .list {
@@ -102,7 +118,24 @@
     left: 0;
   }
 
-  .navMenu li {
+  .list li {
     margin: 16px 0;
+  }
+
+  .button-inside {
+    display: none;
+  }
+
+  .button-outside {
+    display: inline-block;
+    background: none;
+    margin-right: 1rem;
+    transition: all 0.25s;
+    border: none;
+  }
+
+  .button-outside:hover {
+    color: yellow;
+    transform: scale(1.15);
   }
 }

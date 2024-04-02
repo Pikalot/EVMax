@@ -4,6 +4,8 @@ import { Link } from "react-scroll";
 import * as Scroll from "react-scroll";
 import { useContext, useState } from "react";
 import AuthContext from "../store/auth-context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const MainNavigation = () => {
   const ctx = useContext(AuthContext);
@@ -40,6 +42,8 @@ const MainNavigation = () => {
 
   return (
     <header className={styles.header}>
+      <h2>EVMAX</h2>
+
       <nav className={styles.nav}>
         <ul className={`${styles.list} ${isActive ? styles.active : ""}`}>
           {location === "/" ? (
@@ -130,6 +134,9 @@ const MainNavigation = () => {
                   CONTACT ME
                 </Link>
               </li>
+              <button className={styles["button-inside"]}>
+                <FontAwesomeIcon icon={faUser} />
+              </button>
             </>
           ) : (
             <>
@@ -206,10 +213,17 @@ const MainNavigation = () => {
                 >
                   CONTACT ME
                 </button>
+
+                <button className={styles["button-inside"]}>
+                  <FontAwesomeIcon icon={faUser} />
+                </button>
               </li>
             </>
           )}
         </ul>
+        <button className={styles["button-outside"]}>
+          <FontAwesomeIcon icon={faUser} />
+        </button>
       </nav>
 
       <div
