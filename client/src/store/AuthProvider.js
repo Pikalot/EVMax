@@ -5,6 +5,8 @@ import axios from "axios";
 const AuthProvider = (props) => {
   const [cars, setCars] = useState([]);
   const [favoriteCarsID, setFavoriteCarsID] = useState([]);
+  const [isloggedIn, setIsLoggedIn] = useState(false);
+
   const [filter, setFilter] = useState({
     sortOptions: "",
     body: "all",
@@ -49,6 +51,7 @@ const AuthProvider = (props) => {
     allCars: cars,
     favoriteCarsID: favoriteCarsID,
     filterOptions: filter,
+    isLoggedIn: isloggedIn,
   };
 
   return (

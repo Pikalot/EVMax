@@ -8,6 +8,7 @@ const AuthContext = React.createContext({
   allCars: [],
   favoriteCarsID: [],
   filterOptions: {},
+  isloggedIn: false,
 });
 
 export default AuthContext;
