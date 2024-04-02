@@ -9,13 +9,10 @@ const RootLayout = () => {
   return (
     <>
       <MainNavigation />
-      {ctx.isOpenedLoginModal ? (
-        <LoginModal />
-      ) : (
-        <main>
-          <Outlet />
-        </main>
-      )}
+      {ctx.isOpenedLoginModal && <LoginModal />}
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };

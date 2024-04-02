@@ -1,7 +1,7 @@
 import { faSort } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Filter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../store/auth-context";
 
 const Filter = () => {

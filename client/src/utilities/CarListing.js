@@ -1,7 +1,7 @@
 import styles from "./CarListing.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import AuthContext from "../store/auth-context";
 import Carousel from "react-bootstrap/Carousel";
 
