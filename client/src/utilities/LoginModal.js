@@ -1,6 +1,6 @@
 import styles from "./LoginModal.module.css";
 import AuthContext from "../store/auth-context";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { google } from "../assets";
@@ -14,37 +14,30 @@ const Modal = (props) => {
 const LoginModal = () => {
   const ctx = useContext(AuthContext);
   const [isSignedUp, setIsSignedUp] = useState(true);
+  const [userInput, setUserInput] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-  const nameInputRef = useRef(null);
-  const emailInputRef = useRef(null);
-  const passwordInputRef = useRef(null);
+  const nameInputHandler = (event) => {
+    setUserInput((prev) => ({ ...prev, name: event.target.value }));
+  };
+
+  const emailInputHandler = (event) => {
+    setUserInput((prev) => ({ ...prev, email: event.target.value }));
+  };
+
+  const passwordInputHandler = (event) => {
+    setUserInput((prev) => ({ ...prev, password: event.target.value }));
+  };
 
   const formHandler = (event) => {
     event.preventDefault();
-    const name = nameInputRef.current.value;
-    const email = emailInputRef.current.value;
-    const password = passwordInputRef.current.value;
-    if (isSignedUp)
-      ctx.processDataInput(
-        {
-          name,
-          email,
-          password,
-        },
-        "signup"
-      );
-    else
-      ctx.processDataInput(
-        {
-          email,
-          password,
-        },
-        "login"
-      );
+    if (isSignedUp) ctx.processDataInput(userInput, "signup");
+    else ctx.processDataInput(userInput, "login");
 
-    nameInputRef.current.value = "";
-    emailInputRef.current.value = "";
-    passwordInputRef.current.value = "";
+    setUserInput({ name: "", email: "", password: "" });
   };
 
   const toggleSignInHandler = () => {
@@ -72,13 +65,24 @@ const LoginModal = () => {
           </div>
           <span>or use your account</span>
           {isSignedUp && (
-            <input type="text" placeholder="Name" ref={nameInputRef} />
+            <input
+              type="text"
+              placeholder="Name"
+              onChange={nameInputHandler}
+              value={userInput.name}
+            />
           )}
-          <input type="email" placeholder="Email" ref={emailInputRef} />
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={emailInputHandler}
+            value={userInput.email}
+          />
           <input
             type="password"
             placeholder="Password"
-            ref={passwordInputRef}
+            onChange={passwordInputHandler}
+            value={userInput.password}
           />
 
           <div className={styles.actions}>

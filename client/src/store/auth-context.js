@@ -4,12 +4,12 @@ const AuthContext = React.createContext({
   getData: () => {},
   saveCar: () => {},
   setFilterOptions: () => {},
-  toggleLoginModalActions: () => {},
+  setLoginModalActions: () => {},
+  processDataInput: () => {},
   featuredCars: [],
   allCars: [],
   favoriteCarsID: [],
   filterOptions: {},
-  isloggedIn: false,
   isOpenedLoginModal: false,
 });
 
