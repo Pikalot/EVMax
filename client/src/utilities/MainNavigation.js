@@ -136,7 +136,9 @@ const MainNavigation = () => {
               </li>
               <button
                 className={styles["button-inside"]}
-                onClick={ctx.toggleLoginModalActions}
+                onClick={() => {
+                  ctx.setLoginModalActions(true);
+                }}
               >
                 <FontAwesomeIcon icon={faUser} />
               </button>
@@ -219,7 +221,9 @@ const MainNavigation = () => {
               </li>
               <button
                 className={styles["button-inside"]}
-                onClick={ctx.toggleLoginModalActions}
+                onClick={() => {
+                  ctx.setLoginModalActions(true);
+                }}
               >
                 <FontAwesomeIcon icon={faUser} />
               </button>
@@ -228,7 +232,9 @@ const MainNavigation = () => {
         </ul>
         <button
           className={styles["button-outside"]}
-          onClick={ctx.toggleLoginModalActions}
+          onClick={() => {
+            ctx.setLoginModalActions(true);
+          }}
         >
           <FontAwesomeIcon icon={faUser} />
         </button>
