@@ -27,13 +27,25 @@ const AuthProvider = (props) => {
   });
 
   const getData = async () => {
+    const id = toast.loading("Fetching Data from Database");
     try {
       const response = await axios.get(
         "http://localhost:1337/api/car-collections?populate=*"
       );
-
+      toast.update(id, {
+        render: "Fetching Data Success!",
+        type: "success",
+        isLoading: false,
+        autoClose: 1000,
+      });
       setCars(response.data.data);
     } catch (error) {
+      toast.update(id, {
+        render: "Connection Error!",
+        type: "error",
+        isLoading: false,
+        autoClose: 1000,
+      });
       console.log(error);
     }
   };

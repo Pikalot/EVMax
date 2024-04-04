@@ -11,7 +11,11 @@ const RootLayout = () => {
   return (
     <>
       <MainNavigation />
-      <ToastContainer theme="colored" />
+      <ToastContainer
+        theme="colored"
+        autoClose={1000}
+        pauseOnFocusLoss={false}
+      />
       {ctx.isOpenedLoginModal && <LoginModal />}
       <main>
         <Outlet />
