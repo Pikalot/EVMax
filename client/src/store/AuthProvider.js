@@ -7,7 +7,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
-  onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 import { toast } from "react-toastify";
 
@@ -37,6 +40,7 @@ const AuthProvider = (props) => {
         type: "success",
         isLoading: false,
         autoClose: 1000,
+        closeOnClick: true,
       });
       setCars(response.data.data);
     } catch (error) {
@@ -45,6 +49,7 @@ const AuthProvider = (props) => {
         type: "error",
         isLoading: false,
         autoClose: 1000,
+        closeOnClick: true,
       });
       console.log(error);
     }
@@ -68,16 +73,16 @@ const AuthProvider = (props) => {
   };
 
   const processDataInput = async (userData, activity) => {
-    try {
-      switch (activity) {
-        case "signup":
+    switch (activity) {
+      case "signup":
+        try {
           const userSignupCredential = await createUserWithEmailAndPassword(
             auth,
             userData.email,
             userData.password
           );
-          const userSignup = userSignupCredential.user;
-          userSignup.displayName = userData.name;
+          const user = userSignupCredential.user;
+          user.displayName = userData.name;
 
           const sendVerificationEmail = await sendEmailVerification(
             auth.currentUser
@@ -85,38 +90,121 @@ const AuthProvider = (props) => {
           console.log(sendVerificationEmail);
           console.log("Email verification sent!");
           toast.success("Email Verification Sent!");
-          break;
-        case "login":
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          toast.error(errorMessage);
+        }
+        break;
+
+      case "loginWithEmail":
+        try {
           const userLoginCredential = await signInWithEmailAndPassword(
             auth,
             userData.email,
             userData.password
           );
-          const userLogin = userLoginCredential.user;
+          const user = userLoginCredential.user;
 
-          if (userLogin.emailVerified) {
+          if (user.emailVerified) {
             setIsOpenedModal(false);
             toast.success("Login successfully!");
-            setCurrentUser(userLogin);
+            setCurrentUser(user);
           } else {
-            sendEmailVerification(auth.currentUser).then(() => {
-              // Email verification sent!
-              console.log("Email verification resent!");
-              toast.info("Email Verification Resent!");
-            });
             throw new Error("Email is not verified!");
           }
-          break;
-        case "logout":
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          toast.error(errorMessage);
+          sendEmailVerification(auth.currentUser).then(() => {
+            // Email verification sent!
+            console.log("Email verification resent!");
+            toast.info("Email Verification Resent!");
+          });
+        }
+        break;
+
+      case "loginWithGoogle":
+        try {
+          const result = await signInWithPopup(auth, new GoogleAuthProvider());
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          setCurrentUser(user);
+          console.log("Google User: ", user);
+          setIsOpenedModal(false);
+        } catch (error) {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+        }
+        break;
+
+      case "loginWithGithub":
+        try {
+          const result = await signInWithPopup(auth, new GithubAuthProvider());
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GithubAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          setCurrentUser(user);
+          setIsOpenedModal(false);
+          console.log("Github User: ", user);
+        } catch (error) {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GithubAuthProvider.credentialFromError(error);
+        }
+        break;
+
+      case "loginWithFacebook":
+        try {
+          const result = await signInWithPopup(
+            auth,
+            new FacebookAuthProvider()
+          );
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = FacebookAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          setCurrentUser(user);
+          setIsOpenedModal(false);
+          console.log("Facebook User: ", user);
+        } catch (error) {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = FacebookAuthProvider.credentialFromError(error);
+        }
+        break;
+
+      case "logout":
+        try {
           auth.signOut();
           toast.success("Logout Successfully!");
           setCurrentUser(null);
-          break;
-      }
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      toast.error(errorMessage);
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          toast.error(errorMessage);
+        }
+        break;
     }
   };
 

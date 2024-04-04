@@ -11,6 +11,7 @@ const AuthContext = React.createContext({
   favoriteCarsID: [],
   filterOptions: {},
   isOpenedLoginModal: false,
+  currentUser: {},
 });
 
 export default AuthContext;

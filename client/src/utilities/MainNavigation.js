@@ -13,6 +13,7 @@ const MainNavigation = () => {
   const navigate = useNavigate();
   const scroller = Scroll.scroller;
   const [isActive, setIsActive] = useState(false);
+  const [isDropdown, setIsDropdown] = useState(true);
 
   const toggleActiveClass = () => {
     setIsActive((prev) => !prev);
@@ -20,6 +21,15 @@ const MainNavigation = () => {
 
   const removeActive = () => {
     setIsActive(false);
+  };
+
+  const hoverHandler = (status) => {
+    setIsDropdown(status);
+  };
+
+  const logoutHandler = () => {
+    setIsDropdown(false);
+    ctx.processDataInput(null, "logout");
   };
 
   const goToPageAndScroll = async (selector, pageTitle) => {
@@ -134,14 +144,48 @@ const MainNavigation = () => {
                   CONTACT ME
                 </Link>
               </li>
-              <button
-                className={styles["button-inside"]}
-                onClick={() => {
-                  ctx.setLoginModalActions(true);
-                }}
-              >
-                <FontAwesomeIcon icon={faUser} />
-              </button>
+
+              {ctx.currentUser === null ? (
+                <button
+                  className={styles["button-inside"]}
+                  onClick={() => {
+                    ctx.setLoginModalActions(true);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faUser} />
+                </button>
+              ) : (
+                <div
+                  className={styles.dropdown}
+                  onMouseEnter={() => {
+                    hoverHandler(true);
+                  }}
+                  onMouseLeave={() => {
+                    hoverHandler(false);
+                  }}
+                >
+                  <button className={styles["username-button"]} type="button">
+                    <FontAwesomeIcon icon={faUser} />
+                    <span>
+                      {" "}
+                      {ctx.currentUser.displayName
+                        .substr(0, ctx.currentUser.displayName.indexOf(" "))
+                        .toUpperCase()}
+                    </span>
+                  </button>
+                  <div
+                    className={
+                      isDropdown
+                        ? `${styles["dropdown-content"]} ${styles.show}`
+                        : styles["dropdown-content"]
+                    }
+                  >
+                    <button onClick={logoutHandler} type="button">
+                      Log Out
+                    </button>
+                  </div>
+                </div>
+              )}
             </>
           ) : (
             <>
@@ -219,25 +263,95 @@ const MainNavigation = () => {
                   CONTACT ME
                 </button>
               </li>
-              <button
-                className={styles["button-inside"]}
-                onClick={() => {
-                  ctx.setLoginModalActions(true);
-                }}
-              >
-                <FontAwesomeIcon icon={faUser} />
-              </button>
+
+              {ctx.currentUser === null ? (
+                <button
+                  className={styles["button-inside"]}
+                  onClick={() => {
+                    ctx.setLoginModalActions(true);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faUser} />
+                </button>
+              ) : (
+                <div
+                  className={styles.dropdown}
+                  onMouseEnter={() => {
+                    hoverHandler(true);
+                  }}
+                  onMouseLeave={() => {
+                    hoverHandler(false);
+                  }}
+                >
+                  <button className={styles["username-button"]} type="button">
+                    <FontAwesomeIcon icon={faUser} />
+                    <span>
+                      {" "}
+                      {ctx.currentUser.displayName
+                        .substr(0, ctx.currentUser.displayName.indexOf(" "))
+                        .toUpperCase()}
+                    </span>
+                  </button>
+                  <div
+                    className={
+                      isDropdown
+                        ? `${styles["dropdown-content"]} ${styles.show}`
+                        : styles["dropdown-content"]
+                    }
+                  >
+                    <button onClick={logoutHandler} type="button">
+                      Log Out
+                    </button>
+                  </div>
+                </div>
+              )}
             </>
           )}
         </ul>
-        <button
-          className={styles["button-outside"]}
-          onClick={() => {
-            ctx.setLoginModalActions(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faUser} />
-        </button>
+        {ctx.currentUser === null ? (
+          <button
+            className={styles["button-outside"]}
+            onClick={() => {
+              ctx.setLoginModalActions(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faUser} />
+          </button>
+        ) : (
+          <div
+            className={styles.dropdown}
+            onMouseEnter={() => {
+              hoverHandler(true);
+            }}
+            onMouseLeave={() => {
+              hoverHandler(false);
+            }}
+          >
+            <button
+              className={`${styles["button-outside"]} ${styles["username-button"]}`}
+              type="button"
+            >
+              <FontAwesomeIcon icon={faUser} />
+              <span>
+                {" "}
+                {ctx.currentUser.displayName
+                  .substr(0, ctx.currentUser.displayName.indexOf(" "))
+                  .toUpperCase()}
+              </span>
+            </button>
+            <div
+              className={
+                isDropdown
+                  ? `${styles["dropdown-content"]} ${styles.show}`
+                  : styles["dropdown-content"]
+              }
+            >
+              <button type="button" onClick={logoutHandler}>
+                Log Out
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       <div

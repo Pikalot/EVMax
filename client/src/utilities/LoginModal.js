@@ -32,10 +32,24 @@ const LoginModal = () => {
     setUserInput((prev) => ({ ...prev, password: event.target.value }));
   };
 
+  const OathLoginHandler = (provider) => {
+    switch (provider) {
+      case "google":
+        ctx.processDataInput(null, "loginWithGoogle");
+        break;
+      case "facebook":
+        ctx.processDataInput(null, "loginWithFaceBook");
+        break;
+      case "github":
+        ctx.processDataInput(null, "loginWithGithub");
+        break;
+    }
+  };
+
   const formHandler = (event) => {
     event.preventDefault();
     if (isSignedUp) ctx.processDataInput(userInput, "signup");
-    else ctx.processDataInput(userInput, "login");
+    else ctx.processDataInput(userInput, "loginWithEmail");
 
     setUserInput({ name: "", email: "", password: "" });
   };
@@ -56,10 +70,22 @@ const LoginModal = () => {
         <form onSubmit={formHandler}>
           <h1>{isSignedUp ? "Create an Account" : "Sign In"}</h1>
           <div className={styles["social-container"]}>
-            <button className={styles["social-icon"]}>
+            <button
+              type="button"
+              className={styles["social-icon"]}
+              onClick={() => {
+                OathLoginHandler("google");
+              }}
+            >
               <img src={google} alt="" />
             </button>
-            <button className={styles["social-icon"]}>
+            <button
+              type="button"
+              className={styles["social-icon"]}
+              onClick={() => {
+                OathLoginHandler("github");
+              }}
+            >
               <FontAwesomeIcon icon={faGithub} />
             </button>
           </div>
