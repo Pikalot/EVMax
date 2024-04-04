@@ -55,58 +55,56 @@ const AuthProvider = (props) => {
     setIsOpenedModal(status);
   };
 
-  const processDataInput = (userData, activity) => {
-    switch (activity) {
-      case "signup":
-        createUserWithEmailAndPassword(auth, userData.email, userData.password)
-          .then((userCredential) => {
-            // Signed up
-            const user = userCredential.user;
-            user.displayName = userData.name;
+  const processDataInput = async (userData, activity) => {
+    try {
+      switch (activity) {
+        case "signup":
+          const userSignupCredential = await createUserWithEmailAndPassword(
+            auth,
+            userData.email,
+            userData.password
+          );
+          const userSignup = userSignupCredential.user;
+          userSignup.displayName = userData.name;
 
-            console.log(user);
+          const sendVerificationEmail = await sendEmailVerification(
+            auth.currentUser
+          );
+          console.log(sendVerificationEmail);
+          console.log("Email verification sent!");
+          toast.success("Email Verification Sent!");
+          break;
+        case "login":
+          const userLoginCredential = await signInWithEmailAndPassword(
+            auth,
+            userData.email,
+            userData.password
+          );
+          const userLogin = userLoginCredential.user;
+
+          if (userLogin.emailVerified) {
+            setIsOpenedModal(false);
+            toast.success("Login successfully!");
+            setCurrentUser(userLogin);
+          } else {
             sendEmailVerification(auth.currentUser).then(() => {
               // Email verification sent!
-              console.log("Email verification sent!");
-              toast.success("Email verification sent!");
+              console.log("Email verification resent!");
+              toast.info("Email Verification Resent!");
             });
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            toast.error(errorMessage);
-          });
-        break;
-      case "login":
-        signInWithEmailAndPassword(auth, userData.email, userData.password)
-          .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            if (user.emailVerified) {
-              console.log(user);
-              setIsOpenedModal(false);
-              toast.success("Login successfully!");
-              setCurrentUser(user);
-            } else {
-              sendEmailVerification(auth.currentUser).then(() => {
-                // Email verification sent!
-                console.log("Email verification resent!");
-                toast.success("Email verification resent!");
-              });
-              throw new Error("Email is not verified!");
-            }
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            toast.error(errorMessage);
-          });
-        break;
-      case "logout":
-        auth.signOut();
-        toast.success("Logout successfully!");
-        setCurrentUser(null);
-        break;
+            throw new Error("Email is not verified!");
+          }
+          break;
+        case "logout":
+          auth.signOut();
+          toast.success("Logout Successfully!");
+          setCurrentUser(null);
+          break;
+      }
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      toast.error(errorMessage);
     }
   };
 
