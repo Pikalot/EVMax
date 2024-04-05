@@ -5,7 +5,8 @@
   right: 0;
   z-index: 5;
   overflow: hidden;
-  height: 15rem;
+  height: 20rem;
+  width: 24rem;
   background-color: #ccc;
   text-align: center;
   display: inline-block;
@@ -14,6 +15,18 @@
 
 .chat-window {
   padding: 1rem;
+  width: 100%;
+}
+
+.chat-window a {
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.chat-window a:hover,
+.chat-window a:active {
+  color: #4d4ddd;
 }
 
 .chat-actions {
@@ -26,6 +39,7 @@
 
 .chat-actions textarea {
   flex: 1;
+  padding: 0 0.5rem;
 }
 
 .chat-bar {

@@ -6,6 +6,7 @@ const AuthContext = React.createContext({
   setFilterOptions: () => {},
   setLoginModalActions: () => {},
   processDataInput: () => {},
+  firebaseSendMessage: () => {},
   featuredCars: [],
   allCars: [],
   favoriteCarsID: [],

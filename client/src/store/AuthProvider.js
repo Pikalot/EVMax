@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import AuthContext from "./auth-context";
 import axios from "axios";
-import { app } from "../firebase/firebase-config";
+import { auth, db } from "../firebase/firebase-config";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
@@ -12,6 +11,7 @@ import {
   GithubAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 const AuthProvider = (props) => {
@@ -20,7 +20,6 @@ const AuthProvider = (props) => {
   const [isOpenedModal, setIsOpenedModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   // Firebase Authentication
-  const auth = getAuth(app);
 
   const [filter, setFilter] = useState({
     sortOptions: "",
@@ -208,6 +207,16 @@ const AuthProvider = (props) => {
     }
   };
 
+  const sendMessage = async (message) => {
+    const { uid, displayName } = currentUser;
+    await addDoc(collection(db, "messages"), {
+      text: message,
+      name: displayName,
+      createAt: serverTimestamp(),
+      uid,
+    });
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -218,6 +227,7 @@ const AuthProvider = (props) => {
     setFilterOptions: setFilterOptions,
     setLoginModalActions: setModalStatus,
     processDataInput: processDataInput,
+    firebaseSendMessage: sendMessage,
     featuredCars: cars.filter((car) => car.attributes.isFeatured),
     allCars: cars,
     favoriteCarsID: favoriteCarsID,
