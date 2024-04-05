@@ -346,7 +346,11 @@ const MainNavigation = () => {
                   : styles["dropdown-content"]
               }
             >
-              <button type="button" onClick={logoutHandler}>
+              <button
+                type="button"
+                onClick={logoutHandler}
+                className={`${styles["button-outside"]}`}
+              >
                 Log Out
               </button>
             </div>
