@@ -5,6 +5,7 @@ import { useContext } from "react";
 import AuthContext from "../store/auth-context";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LiveChat from "../components/LiveChat/LiveChat";
 
 const RootLayout = () => {
   const ctx = useContext(AuthContext);
@@ -17,6 +18,7 @@ const RootLayout = () => {
         pauseOnFocusLoss={false}
       />
       {ctx.isOpenedLoginModal && <LoginModal />}
+      <LiveChat />
       <main>
         <Outlet />
       </main>

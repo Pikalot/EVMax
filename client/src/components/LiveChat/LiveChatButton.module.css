@@ -1,0 +1,30 @@
+.live-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  border-radius: 50%;
+  z-index: 5;
+  height: 3.5rem;
+  width: 3.5rem;
+  background: none;
+  border: 1px solid #ccc;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  animation: moving 0.5s infinite alternate;
+  transition: background-color, color 0.4s;
+}
+
+.live-button:hover {
+  background-color: #4d4ddd;
+  color: white;
+  border: none;
+}
+
+@keyframes moving {
+  0% {
+    transform: translateY(0.5rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,46 @@
+.chatbox-container {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+  overflow: hidden;
+  height: 15rem;
+  background-color: #ccc;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.chat-window {
+  padding: 1rem;
+}
+
+.chat-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+}
+
+.chat-actions textarea {
+  flex: 1;
+}
+
+.chat-bar {
+  text-align: right;
+  background-color: #4d4ddd;
+}
+
+.chat-bar button {
+  border: none;
+}
+
+.chat-bar button svg {
+  transition: all 0.1s;
+}
+
+.chat-bar button svg:hover {
+  transform: scale(1.1);
+}
