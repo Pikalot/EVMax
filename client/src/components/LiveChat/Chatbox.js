@@ -14,6 +14,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
+import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 
 const Chatbox = (props) => {
   const ctx = useContext(AuthContext);
@@ -68,14 +69,17 @@ const Chatbox = (props) => {
   return (
     <main className={styles["chatbox-container"]}>
       <div className={styles["chat-bar"]}>
+        <div className={styles["chat-bar__title"]}>
+          <FontAwesomeIcon icon={faHeadset} />
+          <span>Customer Support</span>
+        </div>
+
         <button onClick={props.onCloseChatbox}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>
 
       <div className={styles["chat-window"]}>{messageDisplay}</div>
-
-      {/* <span ref={scroll}></span> */}
       <SendMessage onSendMessage={sendMessageHandler} user={ctx.currentUser} />
     </main>
   );

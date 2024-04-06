@@ -11,16 +11,14 @@ const Message = (props) => {
   return (
     <div
       className={`${styles["chat-bubble"]} ${
-        props.message.uid === user.uid ? styles.right : ""
+        props.message.uid === user.uid ? styles.right : styles.left
       }`}
     >
-      <div>
+      <div className={styles["user-info"]}>
         <FontAwesomeIcon icon={faUser} />
-      </div>
-      <div className={styles["chat-bubble__right"]}>
         <p className={styles["user-name"]}>{props.message.name}</p>
-        <p className={styles["user-message"]}>{props.message.text}</p>
       </div>
+      <p className={styles["user-message"]}>{props.message.text}</p>
     </div>
   );
 };

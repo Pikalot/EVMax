@@ -35,6 +35,17 @@
 .chat-bar {
   text-align: right;
   background-color: #4d4ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-bar__title {
+  padding-left: 0.5rem;
+  color: white;
+}
+
+.chat-bar__title span {
+  margin-left: 0.3rem;
 }
 
 .chat-bar button {
