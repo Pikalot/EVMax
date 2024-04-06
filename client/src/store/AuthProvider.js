@@ -212,7 +212,7 @@ const AuthProvider = (props) => {
     await addDoc(collection(db, "messages"), {
       text: message,
       name: displayName,
-      createAt: serverTimestamp(),
+      createdAt: serverTimestamp(),
       uid,
     });
   };

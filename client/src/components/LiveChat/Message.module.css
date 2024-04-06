@@ -1,0 +1,11 @@
+.chat-bubble {
+  display: flex;
+  border-radius: 5px 20px 5px;
+  background: #bada55;
+  margin: 1rem 0;
+}
+
+.right {
+  justify-content: flex-end;
+  background: blue;
+}

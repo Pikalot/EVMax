@@ -16,6 +16,9 @@
 .chat-window {
   padding: 1rem;
   width: 100%;
+  height: calc(100% - 2.8rem);
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .chat-window a {
@@ -27,19 +30,6 @@
 .chat-window a:hover,
 .chat-window a:active {
   color: #4d4ddd;
-}
-
-.chat-actions {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  width: 100%;
-}
-
-.chat-actions textarea {
-  flex: 1;
-  padding: 0 0.5rem;
 }
 
 .chat-bar {

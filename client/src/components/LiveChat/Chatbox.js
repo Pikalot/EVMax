@@ -1,21 +1,69 @@
 import styles from "./Chatbox.module.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import TextareaAutosize from "react-textarea-autosize";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../store/auth-context";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import Message from "./Message";
+import SendMessage from "./SendMessage";
+import {
+  query,
+  collection,
+  orderBy,
+  onSnapshot,
+  limit,
+} from "firebase/firestore";
+import { db } from "../../firebase/firebase-config";
 
 const Chatbox = (props) => {
   const ctx = useContext(AuthContext);
-  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const scroll = useRef();
 
-  const submitHandler = () => {
-    if (message.trim() === "") return;
+  const sendMessageHandler = (message) => {
     ctx.firebaseSendMessage(message);
-    setMessage("");
   };
+
+  const messageDisplay =
+    ctx.currentUser === null ? (
+      <>
+        <h2>Need assistant?</h2>
+        <p>
+          <a
+            onClick={() => {
+              ctx.setLoginModalActions(true);
+            }}
+          >
+            Sign in
+          </a>{" "}
+          to chat with our customer services
+        </p>
+      </>
+    ) : (
+      messages.map((message) => <Message key={message.id} message={message} />)
+    );
+
+  useEffect(() => {
+    const q = query(
+      collection(db, "messages"),
+      orderBy("createdAt", "desc"),
+      limit(50)
+    );
+
+    const unsubcribe = onSnapshot(q, (QuerySnapshot) => {
+      const fetchedMessages = [];
+      QuerySnapshot.forEach((doc) => {
+        fetchedMessages.push({ ...doc.data(), id: doc.id });
+      });
+
+      const sortedMessages = fetchedMessages.sort(
+        (a, b) => a.createdAt - b.createdAt
+      );
+      console.log(sortedMessages);
+      setMessages(sortedMessages);
+    });
+    return () => unsubcribe;
+  }, []);
 
   return (
     <main className={styles["chatbox-container"]}>
@@ -25,38 +73,10 @@ const Chatbox = (props) => {
         </button>
       </div>
 
-      <div className={styles["chat-window"]}>
-        {ctx.currentUser === null ? (
-          <>
-            <h2>Need assistant?</h2>
-            <p>
-              <a
-                onClick={() => {
-                  ctx.setLoginModalActions(true);
-                }}
-              >
-                Sign in
-              </a>{" "}
-              to chat with our customer services
-            </p>
-          </>
-        ) : (
-          <Message />
-        )}
-      </div>
+      <div className={styles["chat-window"]}>{messageDisplay}</div>
 
-      <div className={styles["chat-actions"]}>
-        <TextareaAutosize
-          maxRows={2}
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
-          value={message}
-        />
-        <button type="button" onClick={submitHandler}>
-          <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
-      </div>
+      {/* <span ref={scroll}></span> */}
+      <SendMessage onSendMessage={sendMessageHandler} user={ctx.currentUser} />
     </main>
   );
 };

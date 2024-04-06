@@ -1,0 +1,29 @@
+.chat-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.chat-actions button {
+  border: none;
+}
+
+.chat-actions svg {
+  transition: all 0.3s;
+}
+
+.chat-actions svg:hover {
+  transform: scale(1.1);
+}
+
+.chat-actions textarea {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  width: 100%;
+  border-right: 1px solid black;
+}
