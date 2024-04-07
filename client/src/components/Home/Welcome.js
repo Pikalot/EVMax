@@ -28,7 +28,7 @@ const Welcome = () => {
             </p>
             <button
               className={styles["welcome-btn"]}
-              // onClick="window.location.href='#'"
+              //onClick="window.location.href='#'"
             >
               contact us
             </button>
