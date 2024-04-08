@@ -17,14 +17,14 @@ function ContactUs() {
     <>
         <Banners images={bannerImages} />   
         <div id="contact-me" className="contact">
-        <div className={styles.infoContainer}>
-            <BusinessHours />
-            <LocationInfo />
+          <div className={styles.infoContainer}>
+              <BusinessHours />
+              <LocationInfo />
+              </div>
+          <Service />
+          <ContactMe />
         </div>
-        <Service />
-        <ContactMe />
-    </div>
-  </>
+    </>
   );
 }
 

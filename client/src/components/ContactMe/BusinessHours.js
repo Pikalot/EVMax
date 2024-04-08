@@ -13,7 +13,7 @@ const BusinessHours = () => {
       <p>Sat & Sun: 10:00 am - 4:00 pm</p>
 
       <a href="javascript:void(0)" onClick={handleScheduleClick}> 
-        <h1>Schedule a Test Drive</h1>
+        <h2>Schedule a Test Drive</h2>
       </a>
     </div>
   );
