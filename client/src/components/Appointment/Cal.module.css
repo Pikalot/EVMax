@@ -1,0 +1,11 @@
+.Calendar {
+    font-family: Arial;
+    text-align: center;
+    background-color: #2a2d54;
+  }
+
+.Calendar h1,
+.Calendar h2,
+.Calendar p {
+    color: white;
+}
