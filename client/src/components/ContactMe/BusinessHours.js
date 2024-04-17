@@ -1,11 +1,17 @@
 import styles from './ContactMe.module.css'
+import { useNavigate } from 'react-router-dom'; 
 
-const handleScheduleClick = () => {
-  // Show a modal or message to the user
-  alert("Appointment scheduling coming soon!");
-};
+
 
 const BusinessHours = () => {
+
+  let navigate = useNavigate();
+
+  const handleScheduleClick = () => {
+    // Show a modal or message to the user
+    navigate("/Appointment");
+  };
+
   return (
     <div className={styles.businessHour}>
       <h1>Business Hour</h1>

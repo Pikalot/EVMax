@@ -3,6 +3,8 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import fadeInVariant from "../../utilities/fadeInVariant";
 import { useEffect } from "react";
+import ContactUs from "../../pages/ContactUs";
+import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const control = useAnimation();
@@ -26,12 +28,14 @@ const Welcome = () => {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
+            <Link to="/ContactUs">
             <button
               className={styles["welcome-btn"]}
-              // onClick="window.location.href='#'"
+              // onClick="window.location.href='/ContactUs'"
             >
               contact us
             </button>
+            </Link>
           </div>
         </div>
 

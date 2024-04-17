@@ -47,7 +47,15 @@ const MainNavigation = () => {
         spy: true,
         duration: 0,
       });
-    }
+    } 
+    else if (pageTitle === "ContactUs") {
+      await navigate("/ContactUs");
+      await scroller.scrollTo(selector, {
+        smooth: true,
+        spy: true,
+        duration: 0,
+      });
+    } 
   };
 
   return (
@@ -131,7 +139,7 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   onClick={removeActive}
                   activeClass={styles.active}
                   className={styles.link}
@@ -139,10 +147,10 @@ const MainNavigation = () => {
                   spy
                   offset={-530}
                   duration={0}
-                  to="contact-me"
+                  to="/ContactUs"
                 >
-                  CONTACT ME
-                </Link>
+                  CONTACT US
+                </NavLink>
               </li>
 
               {ctx.currentUser === null ? (
@@ -257,10 +265,10 @@ const MainNavigation = () => {
                 <button
                   onClick={() => {
                     setIsActive(false);
-                    goToPageAndScroll("contact-me", "home");
+                    goToPageAndScroll("ContactUs", "home");
                   }}
                 >
-                  CONTACT ME
+                  CONTACT US
                 </button>
               </li>
 
