@@ -13,6 +13,7 @@ const AuthContext = React.createContext({
   filterOptions: {},
   isOpenedLoginModal: false,
   currentUser: {},
+  currentChatSession: null,
 });
 
 export default AuthContext;

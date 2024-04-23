@@ -1,7 +1,7 @@
 import styles from "./Shop.module.css";
 import CarListing from "../utilities/CarListing";
 import Filter from "../components/Shop/Filter";
-import ContactMe from "../components/Home/ContactMe";
+import Footer from "../components/Home/Footer";
 import { useContext } from "react";
 import AuthContext from "../store/auth-context";
 
@@ -54,7 +54,7 @@ const Shop = () => {
           ))}
         </div>
       </div>
-      <ContactMe />
+      <Footer />
     </>
   );
 };

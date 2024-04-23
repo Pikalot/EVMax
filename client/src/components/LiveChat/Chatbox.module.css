@@ -37,11 +37,14 @@
   background-color: #4d4ddd;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .chat-bar__title {
   padding-left: 0.5rem;
   color: white;
+  flex: 1;
+  text-align: left;
 }
 
 .chat-bar__title span {
