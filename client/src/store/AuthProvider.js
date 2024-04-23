@@ -40,6 +40,8 @@ const AuthProvider = (props) => {
         isLoading: false,
         autoClose: 1000,
         closeOnClick: true,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
       });
       setCars(response.data.data);
     } catch (error) {
@@ -49,6 +51,8 @@ const AuthProvider = (props) => {
         isLoading: false,
         autoClose: 1000,
         closeOnClick: true,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
       });
       console.log(error);
     }
@@ -156,6 +160,7 @@ const AuthProvider = (props) => {
           const user = result.user;
           setCurrentUser(user);
           setIsOpenedModal(false);
+
           console.log("Github User: ", user);
         } catch (error) {
           // Handle Errors here.
@@ -181,6 +186,7 @@ const AuthProvider = (props) => {
           const user = result.user;
           setCurrentUser(user);
           setIsOpenedModal(false);
+
           console.log("Facebook User: ", user);
         } catch (error) {
           // Handle Errors here.
@@ -209,12 +215,17 @@ const AuthProvider = (props) => {
 
   const sendMessage = async (message) => {
     const { uid, displayName } = currentUser;
-    await addDoc(collection(db, "messages"), {
-      text: message,
-      name: displayName,
-      createdAt: serverTimestamp(),
-      uid,
-    });
+
+    try {
+      await addDoc(collection(db, `${displayName}-${uid}`), {
+        text: message,
+        name: displayName,
+        createdAt: serverTimestamp(),
+        uid,
+      });
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   useEffect(() => {

@@ -27,7 +27,7 @@
 }
 
 .welcome-hero-txt h2 {
-  font-size: 42px;
+  font-size: clamp(1.125rem, 0.4342rem + 2.2105vw, 3.75rem);
   color: #fff;
   font-weight: 700;
   text-transform: uppercase;
@@ -35,7 +35,7 @@
 }
 
 .welcome-hero-txt p {
-  font-size: 18px;
+  font-size: clamp(1rem, 0.9342rem + 0.2105vw, 1.25rem);
   text-transform: initial;
   color: #fff;
   font-weight: 500;

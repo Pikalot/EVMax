@@ -16,6 +16,7 @@ const RootLayout = () => {
         theme="colored"
         autoClose={1000}
         pauseOnFocusLoss={false}
+        pauseOnHover={false}
       />
       {ctx.isOpenedLoginModal && <LoginModal />}
       <LiveChat />

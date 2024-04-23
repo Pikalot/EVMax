@@ -42,8 +42,8 @@ const Service = () => {
                   <a href="#">Largest Electric Car Dealership</a>
                 </h2>
                 <p>
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                  odit aut den fugit sed quia.
+                  Discover the joy of sustainable driving with our extensive
+                  range of electric vehicles
                 </p>
               </div>
             </div>
@@ -56,8 +56,8 @@ const Service = () => {
                   <a href="#">Unlimited Repair Warranty</a>
                 </h2>
                 <p>
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                  odit aut den fugit sed quia.
+                  Drive with confidence knowing your vehicle is backed by our
+                  comprehensive repair warranty
                 </p>
               </div>
             </div>
@@ -70,8 +70,8 @@ const Service = () => {
                   <a href="#">Insurance Support</a>
                 </h2>
                 <p>
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                  odit aut den fugit sed quia.
+                  We've got you covered! Benefit from our expert insurance
+                  support tailored to your vehicle needs
                 </p>
               </div>
             </div>

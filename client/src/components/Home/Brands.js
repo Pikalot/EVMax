@@ -5,7 +5,15 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import jQuery from "jquery";
 import { useEffect } from "react";
-
+import {
+  tesla,
+  lucid,
+  toyota,
+  volkswagen,
+  mercedes,
+  ford,
+  rivian,
+} from "../../assets";
 const BrandsDisplay = (props) => {
   return (
     <div className={`item ${styles["item"]}`}>
@@ -17,6 +25,7 @@ const BrandsDisplay = (props) => {
 };
 
 const Brands = () => {
+  // This jQuery is for OwlCarousel
   useEffect(() => {
     window.jQuery = jQuery;
   }, []);
@@ -30,25 +39,25 @@ const Brands = () => {
     autoplayHoverPause: true,
     responsive: {
       0: {
-        items: 3,
+        items: 1,
       },
       768: {
-        items: 3,
+        items: 2,
       },
       1000: {
-        items: 6,
+        items: 4,
       },
     },
   };
 
   const DUMMY_BRANDS = [
-    { url: "x" },
-    { url: "x" },
-    { url: "x" },
-    { url: "x" },
-    { url: "x" },
-    { url: "x" },
-    { url: "x" },
+    { url: tesla },
+    { url: lucid },
+    { url: mercedes },
+    { url: rivian },
+    { url: toyota },
+    { url: volkswagen },
+    { url: ford },
   ];
 
   return (

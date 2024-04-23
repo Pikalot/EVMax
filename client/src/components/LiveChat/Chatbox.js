@@ -19,7 +19,7 @@ import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 const Chatbox = (props) => {
   const ctx = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
-  const scroll = useRef();
+  const [scrollHeight, setScrollHeight] = useState(0);
 
   const sendMessageHandler = (message) => {
     ctx.firebaseSendMessage(message);
@@ -41,8 +41,14 @@ const Chatbox = (props) => {
         </p>
       </>
     ) : (
-      messages.map((message) => <Message key={message.id} message={message} />)
+      <>
+        {messages.map((message) => (
+          <Message key={message.id} message={message} />
+        ))}
+      </>
     );
+
+  const el = document.getElementById("chat-feed");
 
   useEffect(() => {
     const q = query(
@@ -60,16 +66,24 @@ const Chatbox = (props) => {
       const sortedMessages = fetchedMessages.sort(
         (a, b) => a.createdAt - b.createdAt
       );
-      console.log(sortedMessages);
       setMessages(sortedMessages);
+
+      //This is for auto scroll when having new messages
+      if (el !== null && el.scrollHeight !== null) {
+        el.scrollTop = el.scrollHeight;
+        setScrollHeight(el.scrollTop);
+      }
     });
     return () => unsubcribe;
-  }, []);
+  }, [scrollHeight]);
 
   return (
     <main className={styles["chatbox-container"]}>
       <div className={styles["chat-bar"]}>
-        <div className={styles["chat-bar__title"]}>
+        <div
+          className={styles["chat-bar__title"]}
+          onClick={props.onMinimizeChatbox}
+        >
           <FontAwesomeIcon icon={faHeadset} />
           <span>Customer Support</span>
         </div>
@@ -79,7 +93,9 @@ const Chatbox = (props) => {
         </button>
       </div>
 
-      <div className={styles["chat-window"]}>{messageDisplay}</div>
+      <div className={styles["chat-window"]} id="chat-feed">
+        {messageDisplay}
+      </div>
       <SendMessage onSendMessage={sendMessageHandler} user={ctx.currentUser} />
     </main>
   );

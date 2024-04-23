@@ -1,4 +1,4 @@
-import styles from "./ContactMe.module.css";
+import styles from "./Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
@@ -22,8 +22,8 @@ const ContactMe = () => {
                   </a>
                 </div>
                 <p>
-                  Ased do eiusm tempor incidi ut labore et dolore magnaian
-                  aliqua. Ut enim ad minim veniam.
+                  Your destination for premium electric vehicles. Experience the
+                  future of driving today.
                 </p>
                 <div className={styles["footer-contact"]}>
                   <p>info@evmax.com</p>
