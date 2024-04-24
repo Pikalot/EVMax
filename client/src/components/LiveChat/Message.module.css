@@ -3,14 +3,67 @@ Link: https://freefrontend.com/css-speech-bubbles/
 Modified by Nathan Dinh */
 
 .chat-bubble {
-  --r: 25px; /* the radius */
-  --t: 30px; /* the size of the tail */
   display: flex;
 
   flex-direction: column;
   max-width: 300px;
   margin: 1rem 0;
 
+  color: #fff;
+}
+
+.chat-bubble p {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.left {
+  --_d: 0%;
+  border-left: var(--t) solid #0000;
+  margin-right: 100px;
+  place-self: start;
+}
+
+.left .user-info + p{
+  height: 40px;
+  --r: 20px; /* the radius */
+  --t: 10px; /* the size of the tail */
+  padding: calc(2 * var(--r) / 3);
+  -webkit-mask: radial-gradient(var(--t) at var(--_d) 0, #0000 98%, #000 102%)
+      var(--_d) 100% / calc(100% - var(--r)) var(--t) no-repeat,
+    conic-gradient(at var(--r) var(--r), #000 75%, #0000 0) calc(var(--r) / -2)
+      calc(var(--r) / -2) padding-box,
+    radial-gradient(50% 50%, #000 98%, #0000 101%) 0 0 / var(--r) var(--r) space
+      padding-box;
+  mask: radial-gradient(var(--t) at var(--_d) 0, #0000 98%, #000 102%) var(--_d)
+      100% / calc(100% - var(--r)) var(--t) no-repeat,
+    conic-gradient(at var(--r) var(--r), #000 75%, #0000 0) calc(var(--r) / -2)
+      calc(var(--r) / -2) padding-box,
+    radial-gradient(50% 50%, #000 98%, #0000 101%) 0 0 / var(--r) var(--r) space
+      padding-box;
+  /* background: linear-gradient(135deg, #fe6d00, #1384c5) border-box; */
+  background-color: white;
+  padding: 0;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  color: #000;
+}
+
+
+.right {
+  --_d: 100%;
+  border-right: var(--t) solid #0000;
+  margin-left: 100px;
+  place-self: end;
+  text-align: right;
+}
+
+.right .user-info + p{
+  text-align: right;
+  height: 40px;
+  --r: 20px; /* the radius */
+  --t: 10px; /* the size of the tail */
   padding: calc(2 * var(--r) / 3);
   -webkit-mask: radial-gradient(var(--t) at var(--_d) 0, #0000 98%, #000 102%)
       var(--_d) 100% / calc(100% - var(--r)) var(--t) no-repeat,
@@ -26,29 +79,20 @@ Modified by Nathan Dinh */
       padding-box;
   /* background: linear-gradient(135deg, #fe6d00, #1384c5) border-box; */
   background: linear-gradient(135deg, #4c32c2, #1384c5) border-box;
-
-  color: #fff;
-}
-
-.left {
-  --_d: 0%;
-  border-left: var(--t) solid #0000;
-  margin-right: 100px;
-  place-self: start;
-}
-
-.right {
-  --_d: 100%;
-  border-right: var(--t) solid #0000;
-  margin-left: 100px;
-  place-self: end;
-  background: linear-gradient(135deg, #1d163d, #357092) border-box;
+  padding-right: 1rem;
 }
 
 .user-info {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+  margin-bottom: 0;
+}
+
+.user-info p {
+  font-size: 14px;
+  margin: 0;
+  color: black;
 }
 
 .chat-bubble p {

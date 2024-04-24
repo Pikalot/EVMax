@@ -47,7 +47,7 @@ const MainNavigation = () => {
         spy: true,
         duration: 0,
       });
-    }
+    } 
   };
 
   return (
@@ -141,7 +141,7 @@ const MainNavigation = () => {
                   duration={0}
                   to="contact-me"
                 >
-                  CONTACT ME
+                  CONTACT US
                 </Link>
               </li>
 

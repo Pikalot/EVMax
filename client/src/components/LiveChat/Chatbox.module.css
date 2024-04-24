@@ -7,10 +7,12 @@
   overflow: hidden;
   height: 20rem;
   width: 24rem;
-  background-color: #ccc;
+  background-color: #c7c9d8;
   text-align: center;
   display: inline-block;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 6px;
+  margin: 10px;
 }
 
 .chat-window {
@@ -35,6 +37,7 @@
 .chat-bar {
   text-align: right;
   background-color: #4d4ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
 }
@@ -50,6 +53,8 @@
 
 .chat-bar button {
   border: none;
+  background-color: #4d4ddd;
+  color: #ffffff;
 }
 
 .chat-bar button svg {

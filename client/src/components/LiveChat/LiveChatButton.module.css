@@ -7,7 +7,7 @@
   height: 3.5rem;
   width: 3.5rem;
   background: none;
-  border: 1px solid #ccc;
+  border: 1px none #ccc;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   animation: moving 0.5s infinite alternate;
   transition: background-color, color 0.4s;

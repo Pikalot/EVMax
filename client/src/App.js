@@ -2,6 +2,7 @@ import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
+// import ContactUS from "./pages/ContactUS"
 import RootLayout from "./pages/Root";
 import AuthProvider from "./store/AuthProvider";
 
