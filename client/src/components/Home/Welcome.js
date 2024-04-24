@@ -3,7 +3,6 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import fadeInVariant from "../../utilities/fadeInVariant";
 import { useEffect } from "react";
-import ContactUs from "../../pages/ContactUs";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
@@ -29,12 +28,7 @@ const Welcome = () => {
               electric vehicles
             </p>
             <Link to="/ContactUs">
-              <button
-                className={styles["welcome-btn"]}
-                // onClick="window.location.href='/ContactUs'"
-              >
-                contact us
-              </button>
+              <button className={styles["welcome-btn"]}>contact us</button>
             </Link>
           </div>
         </div>

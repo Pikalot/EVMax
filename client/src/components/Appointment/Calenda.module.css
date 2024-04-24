@@ -1,0 +1,16 @@
+.blank-top {
+  padding-top: 90px;
+}
+
+.Calendar {
+  font-family: Arial;
+  text-align: center;
+  background-color: #2a2d54;
+  padding: 1rem;
+}
+
+.Calendar h1,
+.Calendar h2,
+.Calendar p {
+  color: white;
+}
