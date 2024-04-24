@@ -3,7 +3,7 @@ import Welcome from "../components/Home/Welcome";
 import Service from "../components/Home/Service";
 import FeaturedCars from "../components/Home/FeaturedCars";
 import Brands from "../components/Home/Brands";
-import ContactMe from "../components/Home/ContactMe";
+import Footer from "../components/Home/Footer";
 import Testimonial from "../components/Home/Testimonial";
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
       <FeaturedCars />
       <Testimonial />
       <Brands />
-      <ContactMe />
+      <Footer />
     </>
   );
 };

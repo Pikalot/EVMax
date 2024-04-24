@@ -2,7 +2,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
 import { Link } from "react-scroll";
 import * as Scroll from "react-scroll";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../store/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +14,7 @@ const MainNavigation = () => {
   const scroller = Scroll.scroller;
   const [isActive, setIsActive] = useState(false);
   const [isDropdown, setIsDropdown] = useState(true);
+  const [isShrink, setIsShrink] = useState(false);
 
   const toggleActiveClass = () => {
     setIsActive((prev) => !prev);
@@ -47,11 +48,26 @@ const MainNavigation = () => {
         spy: true,
         duration: 0,
       });
-    } 
+    } else if (pageTitle === "contact") {
+      await navigate("/ContactUs");
+      await scroller.scrollTo(selector, {
+        smooth: true,
+        spy: true,
+        duration: 0,
+      });
+    }
   };
 
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      window.addEventListener("scroll", () =>
+        setIsShrink(window.scrollY > 100)
+      );
+    }
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isShrink ? styles.shrink : ""}`}>
       <h2>EVMAX</h2>
 
       <nav className={styles.nav}>
@@ -131,18 +147,18 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <Link
-                  onClick={removeActive}
-                  activeClass={styles.active}
-                  className={styles.link}
-                  smooth
-                  spy
-                  offset={-530}
-                  duration={0}
-                  to="contact-me"
+                <NavLink
+                  to="/ContactUs"
+                  className={({ isActive }) =>
+                    isActive ? styles.active : undefined
+                  }
+                  onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("contact-us", "contact");
+                  }}
                 >
                   CONTACT US
-                </Link>
+                </NavLink>
               </li>
 
               {ctx.currentUser === null ? (
@@ -254,14 +270,22 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <button
+                <NavLink
+                  to="/ContactUs"
+                  className={({ isActive }) =>
+                    isActive ? styles.active : undefined
+                  }
                   onClick={() => {
+                    scroller.scrollTo("contact-us", {
+                      smooth: true,
+                      spy: true,
+                      duration: 0,
+                    });
                     setIsActive(false);
-                    goToPageAndScroll("contact-me", "home");
                   }}
                 >
-                  CONTACT ME
-                </button>
+                  CONTACT US
+                </NavLink>
               </li>
 
               {ctx.currentUser === null ? (

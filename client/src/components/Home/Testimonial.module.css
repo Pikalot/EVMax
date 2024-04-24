@@ -17,11 +17,12 @@
 }
 
 /*testimonial-description*/
-/* .clients-say .testimonial-carousel .col-sm-3,
-.clients-say .testimonial-carousel .col-xs-12 {
-  width: 100%;
-  height: auto;
-} */
+.testimonial-description {
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .testi-single-container {
   margin-top: 20px;

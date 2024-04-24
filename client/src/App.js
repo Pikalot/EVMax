@@ -5,6 +5,8 @@ import Shop from "./pages/Shop";
 // import ContactUS from "./pages/ContactUS"
 import RootLayout from "./pages/Root";
 import AuthProvider from "./store/AuthProvider";
+import Contact from "./pages/Contact";
+import Appointment from "./pages/Appointment";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       { path: "/cars", element: <Shop /> },
+      { path: "/ContactUs", element: <Contact /> },
+      { path: "/Appointment", element: <Appointment /> },
     ],
   },
 ]);

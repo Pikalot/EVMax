@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import fadeInVariant from "../../utilities/fadeInVariant";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const control = useAnimation();
@@ -23,15 +24,12 @@ const Welcome = () => {
           <div className={styles["welcome-hero-txt"]}>
             <h2>get your desired car in resonable price</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Experience the future of transportation with our exceptional
+              electric vehicles
             </p>
-            <button
-              className={styles["welcome-btn"]}
-              // onClick="window.location.href='#'"
-            >
-              contact us
-            </button>
+            <Link to="/ContactUs">
+              <button className={styles["welcome-btn"]}>contact us</button>
+            </Link>
           </div>
         </div>
 
