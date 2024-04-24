@@ -270,14 +270,22 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <button
+                <NavLink
+                  to="/ContactUs"
+                  className={({ isActive }) =>
+                    isActive ? styles.active : undefined
+                  }
                   onClick={() => {
+                    scroller.scrollTo("contact-us", {
+                      smooth: true,
+                      spy: true,
+                      duration: 0,
+                    });
                     setIsActive(false);
-                    goToPageAndScroll("ContactUs", "home");
                   }}
                 >
                   CONTACT US
-                </button>
+                </NavLink>
               </li>
 
               {ctx.currentUser === null ? (
