@@ -124,7 +124,7 @@
 .footer-copyright p,
 .footer-copyright p a {
   color: #a8a9bf;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
 }
@@ -136,7 +136,7 @@
 .footer-social a {
   color: #fff;
   opacity: 0.4;
-  font-size: 14px;
+  font-size: 32px;
   margin-left: 16px;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
