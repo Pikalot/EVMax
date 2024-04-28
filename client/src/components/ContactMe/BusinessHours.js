@@ -1,4 +1,4 @@
-import styles from "./BusinessHour.module.css";
+import styles from "../../pages/Contact.module.css" // All Contact page styles are here
 import { Link } from "react-router-dom";
 
 const BusinessHours = () => {
