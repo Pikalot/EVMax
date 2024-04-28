@@ -48,15 +48,14 @@ const MainNavigation = () => {
         spy: true,
         duration: 0,
       });
-    } 
-    else if (pageTitle === "ContactUs") {
+    } else if (pageTitle === "contact") {
       await navigate("/ContactUs");
       await scroller.scrollTo(selector, {
         smooth: true,
         spy: true,
         duration: 0,
       });
-    } 
+    }
   };
 
   useEffect(() => {
@@ -149,14 +148,14 @@ const MainNavigation = () => {
               </li>
               <li>
                 <NavLink
-                  onClick={removeActive}
-                  activeClass={styles.active}
-                  className={styles.link}
-                  smooth
-                  spy
-                  offset={-530}
-                  duration={0}
                   to="/ContactUs"
+                  className={({ isActive }) =>
+                    isActive ? styles.active : undefined
+                  }
+                  onClick={() => {
+                    setIsActive(false);
+                    goToPageAndScroll("contact-us", "contact");
+                  }}
                 >
                   CONTACT US
                 </NavLink>
@@ -271,14 +270,22 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
               <li>
-                <button
+                <NavLink
+                  to="/ContactUs"
+                  className={({ isActive }) =>
+                    isActive ? styles.active : undefined
+                  }
                   onClick={() => {
+                    scroller.scrollTo("contact-us", {
+                      smooth: true,
+                      spy: true,
+                      duration: 0,
+                    });
                     setIsActive(false);
-                    goToPageAndScroll("ContactUs", "home");
                   }}
                 >
                   CONTACT US
-                </button>
+                </NavLink>
               </li>
 
               {ctx.currentUser === null ? (
