@@ -15,17 +15,19 @@
   background-position: center;
   object-fit: cover;
   opacity: 0;
-  animation: fadeEffect 30s infinite;
+  animation: fadeEffect 75s infinite;
 }
 
-@keyframes fadeEffect {
-  0%,
-  20%,
-  100% {
-    opacity: 0;
+ @keyframes fadeEffect {
+    0%, 20%, 100% { opacity: 0; }
+    5%, 15% { opacity: 1; }
   }
-  5%,
-  15% {
-    opacity: 1;
+
+/* Animation delays to stagger the fade-ins */
+.banner {
+  @for $i from 1 through 5 {
+    div:nth-child(#{$i}) {
+      animation-delay: ($i - 1) * 15s;
+    }
   }
 }
