@@ -3,11 +3,14 @@ import styles from "./Filter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import AuthContext from "../../store/auth-context";
+import { useNavigate } from 'react-router-dom';
 
 const Filter = () => {
   const [disabled, setDisabled] = useState(false);
 
   const ctx = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const sortHandler = (event) => {
     ctx.setFilterOptions({ sortOptions: event.target.value });
@@ -25,6 +28,10 @@ const Filter = () => {
     setDisabled(event.target.checked);
     ctx.setFilterOptions({ isSavedCars: event.target.checked });
   };
+
+  const handleNavigate = () => {
+    navigate('/appointment');
+  }
 
   return (
     <div className={styles["car-filter-container"]}>
@@ -98,6 +105,8 @@ const Filter = () => {
             checked={ctx.filterOptions.isSavedCars}
           />
         </div>
+        <button className={styles['submitButton']} onClick={handleNavigate}>
+          <b>Schedule a Test Drive</b></button>
       </form>
     </div>
   );

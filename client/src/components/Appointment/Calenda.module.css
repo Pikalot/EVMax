@@ -17,6 +17,30 @@
   color: white;
 }
 
+.appointment {
+  font-family: Arial;
+  text-align: left;
+  background-color: white;
+  padding: 1rem;
+}
+
+.appointment h1,
+.appointment h2,
+.appointment p {
+  color: #2a2d54;
+}
+
+.appointment:hover h1,
+.appointment:hover h2,
+.appointment:hover p {
+  color: darkblue;
+}
+
+.appointment:hover {
+  background-color: darkgray;
+}
+
+
 .controls {
   display: flex;
   justify-content: center;
@@ -69,7 +93,7 @@
   cursor: pointer;
 }
 
-.paginationButton:hover {
+.paginationButton:hover p {
   background-color: rgb(189, 128, 16);
   color: whitesmoke;
 }
