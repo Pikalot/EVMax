@@ -1,3 +1,5 @@
+/* Calenda.module.css */
+
 .blank-top {
   padding-top: 90px;
 }
@@ -13,4 +15,110 @@
 .Calendar h2,
 .Calendar p {
   color: white;
+}
+
+.appointment {
+  font-family: Arial;
+  text-align: left;
+  background-color: white;
+  padding: 1rem;
+}
+
+.appointment h1,
+.appointment h2,
+.appointment p {
+  color: #2a2d54;
+}
+
+.appointment:hover h1,
+.appointment:hover h2,
+.appointment:hover p {
+  color: darkblue;
+}
+
+.appointment:hover {
+  background-color: darkgray;
+}
+
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(189, 128, 16);
+  padding: 10px;
+}
+
+.headerCell {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: whitesmoke
+}
+
+.timeRow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.timeslotButton {
+  flex: 1;
+  padding: 12px;
+  margin: 6px;
+  cursor: pointer;
+}
+
+.timeslotButtonSelected {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.paginationButton {
+  width: 240px;
+  padding: 12px;
+  margin: 24px;
+  cursor: pointer;
+}
+
+.paginationButton:hover p {
+  background-color: rgb(189, 128, 16);
+  color: whitesmoke;
+}
+
+.breakTime {
+  background-color: gray; /* a different background color for break times */
+  color: #333; /* a different text color for break times, if needed */
+  pointer-events: none; /* optional: makes it non-interactive */
+}
+
+.submitButton {
+  width: 360px;
+  padding: 18px;
+  margin: 6px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: blue;
+  color: white; /* Set text color to white for better visibility */
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  margin-bottom: 20px;
 }

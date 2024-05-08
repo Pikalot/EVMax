@@ -1,13 +1,70 @@
+/* TAContactMe.module.css */
+
 .contact {
-  display: flex;
-  width: 60%;
-  margin: 1rem auto;
-  gap: 1rem;
-  flex-wrap: wrap;
+  background-color: #f0f0f0; /* Change background color as needed */
+  color: #333; /* Text color */
+  padding: 20px;
+  font-family: Arial, sans-serif; /* Change the font-family as required */
 }
 
-@media (max-width: 1000px) {
-  .contact {
-    width: 100%;
-  }
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: white
+}
+
+.locationInfo {
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: top; /* Aligns items vertically in the center */
+  padding: 20px;
+}
+
+.locationInfo > *:not(:last-child) {
+  margin-right: 40px; /* Set map 20 px apart from text */
+}
+
+
+.locationInfo {
+  margin-right: 20px; /* or as needed */
+  margin-bottom: 20px;
+  flex: 2;
+}
+
+
+.locationText h2 {
+  margin-bottom: 10px;
+  color: #000079; /* Section heading color */
+}
+
+
+.businessHour {
+  text-align: center;
+  width: 100%;
+  flex: 2
+}
+
+.businessHour h1,
+.businessHour h2 {
+  margin-bottom: 10px;
+  color: #000079; /* Section heading color */
+}
+
+.businessHour:hover h1,
+.businessHour:hover h2,
+.businessHour:hover p,
+.locationInfo:hover h2,
+.locationInfo:hover p {
+  color: #fff;
+}
+.businessHour:hover p:before,
+.locationText:hover p:before {
+  background: #fff;
+}
+.businessHour:hover, .locationInfo:hover {
+  box-shadow: 0 12px 30px 0px rgba(0, 1, 193, 0.2);
+  background: #4e4ffa;
+  border: 1px solid #4e4ffa;
 }

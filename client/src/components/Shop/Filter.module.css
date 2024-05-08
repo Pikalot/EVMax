@@ -29,3 +29,13 @@
 .filter-options select {
   width: 5rem;
 }
+
+.submitButton {
+  align-items: center;
+  text-align: center;
+  width: 11.7rem;
+}
+
+.submitButton:hover {
+  background-color: orange;
+}

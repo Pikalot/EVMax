@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./LocationInfo.module.css"; // assuming CSS Modules
+import styles from "../../pages/Contact.module.css" // All Contact page styles are here
 
 const LocationInfo = () => {
   return (

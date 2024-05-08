@@ -10,7 +10,7 @@ const Banners = (props) => {
           alt="No Internet Connection"
           key={index}
           className={styles["banner-img"]}
-          style={{ animationDelay: `${index * 5}s` }}
+          style={{ animationDelay: `${index * 15}s` }}
         />
       ))}
     </div>
