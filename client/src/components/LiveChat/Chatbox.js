@@ -12,6 +12,9 @@ import {
   orderBy,
   onSnapshot,
   limit,
+  addDoc,
+  where,
+  serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 import { faHeadset } from "@fortawesome/free-solid-svg-icons";
@@ -22,7 +25,14 @@ const Chatbox = (props) => {
   const [scrollHeight, setScrollHeight] = useState(0);
 
   const sendMessageHandler = (message) => {
-    ctx.firebaseSendMessage(message);
+    console.log("Sending message: ", message);
+    // ctx.firebaseSendMessage(message);
+    addDoc(collection(db, "messages"), {
+      text: message,
+      createdAt: serverTimestamp(),
+      roomID: ctx.currentUser.uid,
+      name: ctx.currentUser.displayName,
+    });
   };
 
   const messageDisplay =
@@ -33,8 +43,9 @@ const Chatbox = (props) => {
           <a
             onClick={() => {
               ctx.setLoginModalActions(true);
+              props.onCloseChatbox();
             }}
-            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+          >
             Sign in
           </a>{" "}
           to chat with our customer services
@@ -51,30 +62,35 @@ const Chatbox = (props) => {
   const el = document.getElementById("chat-feed");
 
   useEffect(() => {
-    const q = query(
-      collection(db, "messages"),
-      orderBy("createdAt", "desc"),
-      limit(50)
-    );
-
-    const unsubcribe = onSnapshot(q, (QuerySnapshot) => {
-      const fetchedMessages = [];
-      QuerySnapshot.forEach((doc) => {
-        fetchedMessages.push({ ...doc.data(), id: doc.id });
-      });
-
-      const sortedMessages = fetchedMessages.sort(
-        (a, b) => a.createdAt - b.createdAt
+    if (ctx.currentUser !== null) {
+      console.log("Log in");
+      const q = query(
+        collection(db, "messages"),
+        where("roomID", "==", ctx.currentUser.uid),
+        orderBy("createdAt", "desc"),
+        limit(50)
       );
-      setMessages(sortedMessages);
-
-      //This is for auto scroll when having new messages
-      if (el !== null && el.scrollHeight !== null) {
-        el.scrollTop = el.scrollHeight;
-        setScrollHeight(el.scrollTop);
-      }
-    });
-    return () => unsubcribe;
+  
+      const unsubcribe = onSnapshot(q, (QuerySnapshot) => {
+        const fetchedMessages = [];
+        QuerySnapshot.forEach((doc) => {
+          fetchedMessages.push({ ...doc.data(), id: doc.id });
+        });
+  
+        const sortedMessages = fetchedMessages.sort(
+          (a, b) => a.createdAt - b.createdAt
+        );
+        console.log("Messages: ", sortedMessages);
+        setMessages(sortedMessages);
+  
+        //This is for auto scroll when having new messages
+        if (el !== null && el.scrollHeight !== null) {
+          el.scrollTop = el.scrollHeight;
+          setScrollHeight(el.scrollTop);
+        }
+      });
+      return () => unsubcribe;
+    }
   }, [scrollHeight]);
 
   return (

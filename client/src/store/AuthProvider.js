@@ -71,6 +71,7 @@ const AuthProvider = (props) => {
     });
   };
 
+
   const setModalStatus = (status) => {
     setIsOpenedModal(status);
   };
@@ -236,7 +237,7 @@ const AuthProvider = (props) => {
     getData: getData,
     saveCar: carSaveHandler,
     setFilterOptions: setFilterOptions,
-    setLoginModalActions: setModalStatus,
+    setLoginModalActions: setModalStatus, 
     processDataInput: processDataInput,
     firebaseSendMessage: sendMessage,
     featuredCars: cars.filter((car) => car.attributes.isFeatured),
