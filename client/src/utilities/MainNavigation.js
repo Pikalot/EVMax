@@ -184,9 +184,11 @@ const MainNavigation = () => {
                     <FontAwesomeIcon icon={faUser} />
                     <span>
                       {" "}
-                      {ctx.currentUser.displayName
-                        .substr(0, ctx.currentUser.displayName.indexOf(" "))
-                        .toUpperCase()}
+                      {ctx.currentUser.displayName.includes(" ")
+                        ? ctx.currentUser.displayName
+                            .substr(0, ctx.currentUser.displayName.indexOf(" "))
+                            .toUpperCase()
+                        : ctx.currentUser.displayName.toUpperCase()}
                     </span>
                   </button>
                   <div

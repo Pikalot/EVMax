@@ -10,6 +10,7 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   FacebookAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -71,7 +72,6 @@ const AuthProvider = (props) => {
     });
   };
 
-
   const setModalStatus = (status) => {
     setIsOpenedModal(status);
   };
@@ -86,7 +86,10 @@ const AuthProvider = (props) => {
             userData.password
           );
           const user = userSignupCredential.user;
-          user.displayName = userData.name;
+
+          const updateNameResult = await updateProfile(auth.currentUser, {
+            displayName: userData.name,
+          });
 
           const sendVerificationEmail = await sendEmailVerification(
             auth.currentUser
@@ -218,7 +221,7 @@ const AuthProvider = (props) => {
     const { uid, displayName } = currentUser;
 
     try {
-      await addDoc(collection(db, `${displayName}-${uid}`), {
+      await addDoc(collection(db, "messages"), {
         text: message,
         name: displayName,
         createdAt: serverTimestamp(),
@@ -237,7 +240,7 @@ const AuthProvider = (props) => {
     getData: getData,
     saveCar: carSaveHandler,
     setFilterOptions: setFilterOptions,
-    setLoginModalActions: setModalStatus, 
+    setLoginModalActions: setModalStatus,
     processDataInput: processDataInput,
     firebaseSendMessage: sendMessage,
     featuredCars: cars.filter((car) => car.attributes.isFeatured),

@@ -66,23 +66,23 @@ const Chatbox = (props) => {
       console.log("Log in");
       const q = query(
         collection(db, "messages"),
-        where("roomID", "==", ctx.currentUser.uid),
+        // where("roomID", "==", ctx.currentUser.uid),
         orderBy("createdAt", "desc"),
         limit(50)
       );
-  
+
       const unsubcribe = onSnapshot(q, (QuerySnapshot) => {
         const fetchedMessages = [];
         QuerySnapshot.forEach((doc) => {
           fetchedMessages.push({ ...doc.data(), id: doc.id });
         });
-  
+
         const sortedMessages = fetchedMessages.sort(
           (a, b) => a.createdAt - b.createdAt
         );
         console.log("Messages: ", sortedMessages);
         setMessages(sortedMessages);
-  
+
         //This is for auto scroll when having new messages
         if (el !== null && el.scrollHeight !== null) {
           el.scrollTop = el.scrollHeight;

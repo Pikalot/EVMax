@@ -3,8 +3,17 @@ import styles from "./LiveChat.module.css";
 import LiveChatButton from "./LiveChatButton";
 import Chatbox from "./Chatbox";
 import { db } from "../../firebase/firebase-config";
-import { doc, deleteDoc, getDocs, collection, addDoc, query, where } from "firebase/firestore";
+import {
+  doc,
+  deleteDoc,
+  getDocs,
+  collection,
+  addDoc,
+  query,
+  where,
+} from "firebase/firestore";
 import AuthContext from "../../store/auth-context";
+
 const LiveChat = () => {
   const [isOpenedChatbox, setIsOpenedChatbox] = useState(false);
   const [roomCreated, setRoomCreated] = useState(false);
@@ -18,9 +27,20 @@ const LiveChat = () => {
   };
 
   const closeChatboxHandler = async () => {
+    //First specify the collection that contains the documents to be deleted
+    const docRef = query(collection(db, "messages"));
+
+    //Then download all those documents using getDocs
+    const toDelete = await getDocs(docRef);
+
+    //Finally iterate through all of the documents, deleting each of them one by one
+    toDelete.forEach((item) => {
+      const ID = item.id;
+      deleteDoc(doc(db, "messages", ID));
+    });
     setIsOpenedChatbox(false);
   };
-  
+
   useEffect(() => {
     // Check if the room has already been created for the current user
     const checkRoomExists = async () => {
@@ -49,7 +69,7 @@ const LiveChat = () => {
       const roomRef = await addDoc(collection(db, "Rooms"), {
         name: "New Room", // You can set default room name
         createdAt: new Date().toISOString(), // Set current timestamp
-        userId: ctx.currentUser.uid // Associate the room with the current user
+        userId: ctx.currentUser.uid, // Associate the room with the current user
       });
       console.log("New room created with ID: ", roomRef.id);
       setRoomCreated(true);
@@ -58,7 +78,6 @@ const LiveChat = () => {
       console.error("Error creating room or message: ", error);
     }
   };
-
 
   return (
     <>
